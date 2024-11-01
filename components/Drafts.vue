@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { animate } from 'motion';
-import { easeInOutExpo } from '~/static/easings';
 import type { Draft } from '~/types';
 
 const drafts = inject('drafts') as Draft[]

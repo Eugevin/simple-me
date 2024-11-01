@@ -95,16 +95,13 @@ const drafts: Draft[] = [
   },
 ]
 
-const pageLoaded = ref<boolean>(false)
-
 provide('pages', pages)
 provide('drafts', drafts)
 </script>
 
 <template>
   <main>
-    <Preloader :loaded="pageLoaded = true" />
-    <NuxtPage v-if="pageLoaded" />
+    <NuxtPage />
     <div class="transition"></div>
   </main>
   <!-- <Footer /> -->
