@@ -1,0 +1,45 @@
+@use 'fonts';
+@use 'root';
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  min-height: calc(100vh + 2rem);
+  padding-bottom: 2rem;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: Anton, Helvetica, sans-serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: Poppins, Helvetica, sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+b {
+  font-weight: 700;
+}
+
+.container {
+  padding: 0 1rem;
+}
