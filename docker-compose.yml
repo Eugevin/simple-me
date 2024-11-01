@@ -1,0 +1,6 @@
+services:
+  eugevin:
+    build: .
+    container_name: eugevin
+    ports:
+      - 3000:3000
