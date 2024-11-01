@@ -16,14 +16,11 @@ function draftMoveHandler(e: MouseEvent) {
   allDrafts.forEach(draft => {
     draft.style.transform = `translate(calc(${mouseX}px - 10rem), calc(${mouseY}px - 5rem))`
 
-    if (draft.style.opacity !== '1') {
-      draft.style.opacity = '1'
-
-    }
+    if (draft.style.opacity !== '1') draft.style.opacity = '1'
   })
 }
 
-function draftWheelhandler(e: WheelEvent) {
+function wheelHandler(e: WheelEvent) {
   if (disableAllHandlers) return
 
   const allDrafts = Array.from(document.querySelectorAll<HTMLElement>('.drafts .drafts__item'))
@@ -38,6 +35,8 @@ function draftWheelhandler(e: WheelEvent) {
     filteredDrafts[0]?.classList.remove('hide')
   }
 }
+
+const draftWheelhandler = throttle(wheelHandler, 1000)
 
 function draftLeaveHandler(e: MouseEvent) {
   if (disableAllHandlers) return
