@@ -73,6 +73,9 @@ function draftDownHandler(e: MouseEvent) {
   width: 100%;
 
   &__description {
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 1;
     visibility: hidden;
     opacity: 0;
     transform: translateY(1rem);

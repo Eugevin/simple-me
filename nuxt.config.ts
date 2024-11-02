@@ -7,5 +7,14 @@ export default defineNuxtConfig({
       title: 'Eugene Vinokurov | Frontend Developer'
     }
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern'
+        }
+      }
+    }
+  },
   css: ['~/assets/scss/main.scss']
 })
