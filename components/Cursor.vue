@@ -27,6 +27,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .cursor {
+  backdrop-filter: invert(100%);
   mix-blend-mode: difference;
   position: fixed;
   top: 0;
