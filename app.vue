@@ -100,12 +100,14 @@ provide('drafts', drafts)
 </script>
 
 <template>
+  <Cursor />
   <main>
     <NuxtPage />
-    <Cursor />
-    <div class="transition"></div>
+    <div class="transition">
+      <h2>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h2>
+    </div>
   </main>
-  <!-- <Footer /> -->
+  <Footer />
 </template>
 
 <style scoped lang="scss">
@@ -131,6 +133,7 @@ provide('drafts', drafts)
     height: 100%;
     width: 100%;
     background: url('/images/bg.png');
+    opacity: 0.5;
     z-index: -1;
   }
 }
