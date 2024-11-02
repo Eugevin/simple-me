@@ -27,6 +27,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .cursor {
+  mix-blend-mode: difference;
   position: fixed;
   top: 0;
   left: 0;
@@ -34,6 +35,7 @@ onMounted(() => {
   background: #1F1F1F90;
   border-radius: 100%;
   z-index: 98;
+  opacity: 0;
   transition: .5s ease-out;
   pointer-events: none;
 }
