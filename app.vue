@@ -102,6 +102,7 @@ provide('drafts', drafts)
 <template>
   <main>
     <NuxtPage />
+    <Cursor />
     <div class="transition"></div>
   </main>
   <!-- <Footer /> -->

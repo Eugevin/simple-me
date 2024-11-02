@@ -36,6 +36,7 @@ onMounted(() => {
           <ul>
             <li v-for="detail in currentDraft.details" :key="detail">{{ detail }}</li>
           </ul>
+          <a v-if="currentDraft.link" :href="currentDraft.link" target="_blank">to project</a>
         </div>
       </div>
     </div>
@@ -128,6 +129,14 @@ onMounted(() => {
             background: url('/images/smile.svg') no-repeat center / contain;
           }
         }
+      }
+
+      a {
+        margin-left: -.5rem;
+        padding: 1rem;
+        font-weight: 700;
+        color: var(--black);
+        display: inline-block;
       }
     }
 

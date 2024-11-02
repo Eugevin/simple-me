@@ -30,7 +30,7 @@ onMounted(() => {
   <header class="header">
     <div class="container">
       <h2 class="header__title">{{ title }}</h2>
-      <div class="header__menu" @click="menuActive = !menuActive">men<span :class="{ active: menuActive }">u</span></div>
+      <div class="header__menu hoverable" @click="menuActive = !menuActive">men<span :class="{ active: menuActive }" class="hoverable">u</span></div>
       <nav class="header__navigation" :class="{ active: menuActive }">
         <NuxtLink :to="page.link" v-for="page in pages.filter(page => page.link !== `/${String($route.name)}`)" :key="page.title">{{ page.title }}</NuxtLink>
       </nav>
