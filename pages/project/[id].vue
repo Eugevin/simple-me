@@ -32,14 +32,14 @@ onMounted(() => {
           <img :src="`${currentDraft.image.split('.webp')[0]}-vertical.jpg`" alt="project image">
         </div>
         <div class="project__stack">{{ currentDraft.stack }}</div>
-        <div class="project__description">
+        <p class="project__description">
           <p v-html="currentDraft.description"></p>
           <p>Which I participated in:</p>
           <ul>
             <li v-for="detail in currentDraft.details" :key="detail">{{ detail }}</li>
           </ul>
           <a v-if="currentDraft.link" :href="currentDraft.link" target="_blank">to project</a>
-        </div>
+        </p>
       </div>
     </div>
   </div>
@@ -95,10 +95,7 @@ onMounted(() => {
     }
 
     &__description {
-      letter-spacing: 2px;
       visibility: hidden;
-      line-height: 1.5;
-      font-size: .8rem;
       background: #D9D9D9;
       grid-area: description;
       padding: .5rem;
@@ -118,7 +115,7 @@ onMounted(() => {
 
           &::first-letter {
             text-transform: uppercase;
-            font-weight: bold;
+            font-weight: 700;
           }
 
           &::before {

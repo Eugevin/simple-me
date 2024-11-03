@@ -4,10 +4,6 @@ definePageMeta({ pageTransition })
 onMounted(() => {
   document.body.style.overflow = 'hidden'
 })
-
-onUnmounted(() => {
-  document.body.style.overflow = 'visible'
-})
 </script>
 
 <template>

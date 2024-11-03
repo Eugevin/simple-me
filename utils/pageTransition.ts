@@ -7,6 +7,7 @@ const meta: PageMeta = {
     name: 'page-transition',
     mode: 'out-in',
     onEnter: async (_el, done) => {
+      document.body.style.overflow = 'visible'
       await animate('main > .transition', { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }, { duration: 1, easing: easeInOutExpo }).finished
       done()
     },

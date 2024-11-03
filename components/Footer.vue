@@ -14,9 +14,8 @@
 <style scoped lang="scss">
 .footer {
   font-size: 0.8rem;
-  padding: 1rem 0;
+  padding: 5rem 0 1rem;
   text-align: center;
-  font-weight: 200;
 
   p {
     display: flex;

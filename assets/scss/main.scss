@@ -27,8 +27,38 @@ h2 {
   text-transform: uppercase;
 }
 
+h3 {
+  font-family: Poppins, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+p {
+  letter-spacing: 2px;
+  line-height: 1.5;
+  font-size: .8rem;
+}
+
 ul {
   list-style-type: none;
+  font-size: .8rem;
+
+  li {
+    letter-spacing: 2px;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: .35rem;
+      left: 0;
+      height: .25rem;
+      width: .25rem;
+      border-radius: 100%;
+      background: var(--white);
+    }
+  }
 }
 
 a {

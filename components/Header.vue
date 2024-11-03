@@ -85,7 +85,8 @@ onMounted(() => {
   }
 
   &__menu {
-    font-weight: 200;
+    position: fixed;
+    right: 1rem;
     text-transform: uppercase;
     margin-left: auto;
     display: flex;
