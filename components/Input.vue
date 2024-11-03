@@ -17,6 +17,7 @@ defineProps<{
 button {
   outline: none;
   background: none;
+  font-family: Poppins, Helvetica, sans-serif;
   font-size: 1.5rem;
   border: none;
   display: inline-block;
@@ -31,7 +32,7 @@ button {
       position: absolute;
       top: 50%;
       left: 0;
-      height: .1rem;
+      height: .08rem;
       width: 100%;
       opacity: 0;
       transform: translateY(-50%);
