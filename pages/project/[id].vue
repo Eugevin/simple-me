@@ -33,14 +33,14 @@ onMounted(() => {
           <img :src="`${currentDraft.image.split('.webp')[0]}-vertical.jpg`" alt="project image">
         </div>
         <div class="project__stack">{{ currentDraft.stack }}</div>
-        <p class="project__description">
+        <div class="project__description">
           <p v-html="currentDraft.description"></p>
           <p>Which I participated in:</p>
           <ul>
             <li v-for="detail in currentDraft.details" :key="detail">{{ detail }}</li>
           </ul>
           <a v-if="currentDraft.link" :href="currentDraft.link" target="_blank">to project</a>
-        </p>
+        </div>
       </div>
     </div>
   </div>
