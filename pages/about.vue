@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { animate, inView, scroll } from 'motion';
+import { clipPaths } from '~/static/clipPaths';
 import { easeInOutExpo } from '~/static/easings';
 
 const frontendSkills: string[] = [
@@ -39,7 +40,7 @@ async function scrollPage() {
 
     movingEls.forEach(moving => {
       inView(moving, () => {
-        animate(moving, { clipPath: ['polygon(0 0, 100% 0, 100% 0, 0 0)', 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'] }, { duration: 1, easing: easeInOutExpo })
+        animate(moving, { clipPath: [...clipPaths.toBottom] }, { duration: 1, easing: easeInOutExpo })
       }, { margin: '0px 0px -250px 0px' })
     })
   })

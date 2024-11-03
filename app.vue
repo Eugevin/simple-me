@@ -120,7 +120,6 @@ provide('drafts', drafts)
   display: flex;
   justify-content: center;
   align-items: center;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
   visibility: hidden;
   background: var(--black);
   z-index: 99;

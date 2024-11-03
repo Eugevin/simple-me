@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { animate } from 'motion';
+import { clipPaths } from '~/static/clipPaths';
 import { easeInOutExpo } from '~/static/easings';
 import type { Draft } from '~/types';
 
@@ -13,9 +14,9 @@ const currentDraft = drafts.find(draft => draft.title === String(route.params.id
 async function showPage() {
   await wait()
 
-  animate('.project .project__image', { visibility: 'visible', clipPath: ['polygon(0 100%, 0 100%, 0 0, 0 0)', 'polygon(100% 100%, 0 100%, 0 0, 100% 0)']}, { duration: 1, easing: easeInOutExpo })
-  animate('.project .project__stack', { visibility: 'visible', clipPath: ['polygon(0 100%, 0 100%, 0 0, 0 0)', 'polygon(100% 100%, 0 100%, 0 0, 100% 0)']}, { duration: 0.8, easing: easeInOutExpo })
-  animate('.project .project__description', { visibility: 'visible', clipPath: ['polygon(0 0, 100% 0, 100% 0, 0 0)', 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)']}, { delay: 0.3, duration: 0.6, easing: easeInOutExpo })
+  animate('.project .project__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo })
+  animate('.project .project__stack', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 0.8, easing: easeInOutExpo })
+  animate('.project .project__description', { visibility: 'visible', clipPath: [...clipPaths.toBottom]}, { delay: 0.3, duration: 0.6, easing: easeInOutExpo })
 }
 
 onMounted(() => {

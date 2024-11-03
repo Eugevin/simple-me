@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { animate, stagger } from 'motion';
+import { clipPaths } from '~/static/clipPaths';
 import { easeInOutExpo } from '~/static/easings';
 import type { Page } from '~/types';
 
@@ -30,7 +31,7 @@ async function showPage() {
   await animate('.index-page', { visibility: 'visible', opacity: [0, 1] }, { duration: 1, easing: easeInOutExpo }).finished
   animate('.fastline', { visibility: 'visible', opacity: [0, 1], transform: ['translateY(-100%)', 'translateY(0)']}, { duration: 1, easing: easeInOutExpo })
   await animate('.me__title span', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.05), easing: easeInOutExpo }).finished
-  animate('.me__image', { visibility: 'visible', clipPath: ['polygon(0 100%, 0 100%, 0 0, 0 0)', 'polygon(100% 100%, 0 100%, 0 0, 100% 0)']}, { duration: 1, easing: easeInOutExpo }).finished
+  animate('.me__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo }).finished
   animate('.me__pages button', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.25), easing: easeInOutExpo })
 }
 
