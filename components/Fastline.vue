@@ -21,6 +21,7 @@ defineProps<{
 
   .words {
     display: flex;
+    flex-direction: row;
     animation: fastlineAnimation 20s linear infinite;
 
     &__item {

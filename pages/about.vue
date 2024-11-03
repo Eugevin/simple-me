@@ -2,6 +2,21 @@
 import { animate, inView, scroll } from 'motion';
 import { easeInOutExpo } from '~/static/easings';
 
+const frontendSkills: string[] = [
+  'JavaScript/TypeScript ES6+',
+  'Vue.js 3.0 with Composition API & Pinia/VueX',
+  'WebRTC, WebSockets, JWT/Sessions',
+  'WebGL, Canvas, Cocos2D, ThreeJS',
+  'HTML5 and CSS3 - base of web'
+]
+
+const backendSkills: string[] = [
+  'ExpressJS, SocketIO, NestJS (production experience), ElysiaJS',
+  'NodeJS for simple I/O',
+  'Docker',
+  'Nginx, MongoDB & PostgreSQL, Ubuntu (for based and advanced usage)'
+]
+
 definePageMeta({ pageTransition })
 
 async function scrollPage() {
@@ -42,25 +57,31 @@ onMounted(() => {
       <section>
         <h3>My name is Eugene</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at tortor suscipit, tristique odio sed, posuere nisi. Praesent vel consequat arcu. Maecenas ut quam vehicula, ultricies dolor eget, pellentesque eros. Sed purus lorem, suscipit non leo vel, molestie placerat eros. Phasellus ut accumsan sapien. Nullam lacinia erat odio, eget dapibus dolor tincidunt non. Sed at laoreet erat. Pellentesque iaculis mi mi. Quisque ut arcu aliquet sem facilisis elementum sit amet quis nunc. Vestibulum ac viverra ante, hendrerit interdum leo. Pellentesque ac varius neque. Aliquam erat volutpat.
+          I am Frontend development on Vanilla JS, TypeScript and Vue.js (primarly).
         </p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at tortor suscipit, tristique odio sed, posuere nisi. Praesent vel consequat arcu. Maecenas ut quam vehicula, ultricies dolor eget, pellentesque eros. Sed purus lorem, suscipit non leo vel, molestie placerat eros. Phasellus ut accumsan sapien. Nullam lacinia erat odio, eget dapibus dolor tincidunt non. Sed at laoreet erat. Pellentesque iaculis mi mi. Quisque ut arcu aliquet sem facilisis elementum sit amet quis nunc. Vestibulum ac viverra ante, hendrerit interdum leo. Pellentesque ac varius neque. Aliquam erat volutpat.
+          On the whole, I'm just an ordinary guy from Nizhny Novgorod who somehow likes writing code since childhood. I write code at home, write code before going to bed, write code at my parents' cottage. I learned to write code with the help of the method: “WRITE CODE, READ DOCUMENTATION”. From time to time inspiration strikes and I want to make something of my own. So, for example, my <NuxtLink to="/project/olumni chat"><b class="hoverable">pet olumni project</b></NuxtLink> was born (WebRTC chat, built first on SFU and then on MESH architecture).
         </p>
-        <img data-speed="250" class="image image__me moving" src="/images/me.webp" alt="section image">
-        <img data-speed="50" class="image image__me-cozy moving" src="/images/me-cozy.jpg" alt="section image">
+        <img data-speed="50" class="image image__me moving" src="/images/me-cozy.jpg" alt="section image">
       </section>
       <section>
         <h3>My Skills</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at tortor suscipit, tristique odio sed, posuere nisi. Praesent vel consequat arcu. Maecenas ut quam vehicula, ultricies dolor eget, pellentesque eros. Sed purus lorem, suscipit non leo vel, molestie placerat eros. Phasellus ut accumsan sapien. Nullam lacinia erat odio, eget dapibus dolor tincidunt non. Sed at laoreet erat. Pellentesque iaculis mi mi. Quisque ut arcu aliquet sem facilisis elementum sit amet quis nunc. Vestibulum ac viverra ante, hendrerit interdum leo. Pellentesque ac varius neque. Aliquam erat volutpat.
+          I am a frontend developer, but also have experience in backend application development (commercial among others). It seems to me that you want to know more about me. Want to? Scroll down!
         </p>
         <p>
           <b>Frontend Skills:</b>
-          <ul>
-            <li>Simple frontend skills</li>
-          </ul>
         </p>
+        <ul>
+          <li v-for="skill in frontendSkills" :key="skill">{{ skill }}</li>
+        </ul>
+        <p>
+          <b>Backend Skills:</b>
+        </p>
+        <ul>
+          <li v-for="skill in backendSkills" :key="skill">{{ skill }}</li>
+        </ul>
+        <p>*I also write in Rust. I like it a lot, but I'm still too little expert in it... Well, I mean, I can set up Tauri, I can write a basic backend, but the complicated stuff is still complicated stuff for me.</p>
         <img data-speed="200" class="image image__skills moving" src="/images/draft-pp.webp" alt="section image">
       </section>
       <div class="cv">
@@ -84,17 +105,14 @@ onMounted(() => {
       mix-blend-mode: difference;
     }
 
-    h3 {
+    h3, p, ul {
       margin-bottom: 1rem;
-    }
-
-    p {
       max-width: 20rem;
-      margin-bottom: 1rem;
     }
   }
 
   .image {
+    filter: grayscale(1);
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     pointer-events: none;
     position: absolute;
@@ -103,13 +121,8 @@ onMounted(() => {
     left: 50%;
 
     &__me {
-      width: 15rem;
-      rotate: 5deg;
-    }
-
-    &__me-cozy {
       width: 8rem;
-      top: 40%;
+      top: 20%;
       rotate: -5deg;
     }
 
