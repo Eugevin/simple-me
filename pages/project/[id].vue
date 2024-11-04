@@ -74,9 +74,10 @@ onMounted(() => {
 
     &__stack {
       visibility: hidden;
-      padding: 1rem 0 1rem .5rem;
+      padding: 1rem .5rem;
       background: #D9D9D9;
       grid-area: stack;
+      font-size: 1.4rem;
       font-weight: 700;
       text-transform: uppercase;
       z-index: 1;
@@ -137,6 +138,10 @@ onMounted(() => {
         font-weight: 700;
         color: var(--black);
         display: inline-block;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 

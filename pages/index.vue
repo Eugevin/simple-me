@@ -109,7 +109,7 @@ onMounted(() => {
     content: "";
     position: absolute;
     top: -2rem;
-    right: -3rem;
+    right: -1.8rem;
     height: 15rem;
     width: 15rem;
     background: url('/images/fingerprint.svg') no-repeat center;

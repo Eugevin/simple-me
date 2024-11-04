@@ -61,9 +61,12 @@ onMounted(() => {
           I am Frontend development on Vanilla JS, TypeScript and Vue.js (primarly).
         </p>
         <p>
-          On the whole, I'm just an ordinary guy from Nizhny Novgorod who somehow likes writing code since childhood. I write code at home, write code before going to bed, write code at my parents' cottage. I learned to write code with the help of the method: “WRITE CODE, READ DOCUMENTATION”. From time to time inspiration strikes and I want to make something of my own. So, for example, my <NuxtLink to="/project/olumni chat"><b class="hoverable">pet olumni project</b></NuxtLink> was born (WebRTC chat, built first on SFU and then on MESH architecture).
+          On the whole, I'm just an ordinary guy from Nizhny Novgorod who somehow likes writing code since childhood. I write code at home, write code before going to bed, write code at my parents' cottage. I learned to write code with the help of the method: “WRITE CODE, READ DOCUMENTATION”.
         </p>
-        <img data-speed="50" class="image image__me moving" src="/images/me-cozy.jpg" alt="section image">
+        <p>
+          From time to time inspiration strikes and I want to make something of my own. So, for example, my <NuxtLink to="/project/olumni chat"><b class="hoverable">pet olumni project</b></NuxtLink> was born (WebRTC chat, built first on SFU and then on MESH architecture).
+        </p>
+        <img data-speed="20" class="image image__me moving" src="/images/me-cozy.jpg" alt="section image">
       </section>
       <section>
         <h3>My Skills</h3>
@@ -83,7 +86,7 @@ onMounted(() => {
           <li v-for="skill in backendSkills" :key="skill">{{ skill }}</li>
         </ul>
         <p>*I also write in Rust. I like it a lot, but I'm still too little expert in it... Well, I mean, I can set up Tauri, I can write a basic backend, but the complicated stuff is still complicated stuff for me.</p>
-        <img data-speed="200" class="image image__skills moving" src="/images/draft-pp.webp" alt="section image">
+        <img data-speed="50" class="image image__rick moving" src="/images/rick.png" alt="section image">
       </section>
       <div class="cv">
         <p>You can downlaod my CV using this button:</p>
@@ -127,9 +130,9 @@ onMounted(() => {
       rotate: -5deg;
     }
 
-    &__skills {
+    &__rick {
       left: 60%;
-      width: 10rem;
+      width: 5rem;
       rotate: 10deg;
     }
   }

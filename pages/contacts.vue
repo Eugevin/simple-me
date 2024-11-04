@@ -110,7 +110,7 @@ function openSocial(url: string) {
   
   .container {
     position: relative;
-    padding: 5rem 1rem;
+    padding: 10rem 1rem;
   }
 
   svg {
@@ -121,6 +121,7 @@ function openSocial(url: string) {
   }
 
   .buttons {
+    margin-top: 1rem;
     display: flex;
     justify-content: space-around;
 

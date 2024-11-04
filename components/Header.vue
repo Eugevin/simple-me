@@ -115,6 +115,7 @@ onMounted(() => {
     top: 5rem;
     right: 0;
     text-transform: uppercase;
+    text-align: left;
     display: flex;
     flex-direction: column;
     transform: translate(50%);
