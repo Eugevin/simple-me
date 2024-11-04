@@ -15,7 +15,8 @@ function draftMoveHandler(e: MouseEvent) {
   const mouseY = e.clientY
 
   allDrafts.forEach(draft => {
-    draft.style.transform = `translate(calc(${mouseX}px - 10rem), calc(${mouseY}px - 5rem))`
+    // TODO: Rewrite all this shit... It's like swimming in the pool full of crap. HUGE POOL OF CRAP - it's ur code here, delete it! 
+    requestAnimationFrame(() => draft.style.transform = `translate(calc(${mouseX}px - 10rem), calc(${mouseY}px - 5rem))`)
 
     if (draft.style.opacity !== '1') draft.style.opacity = '1'
   })

@@ -1,23 +1,48 @@
 <script setup lang="ts">
-function cursorAnimation() {
-  document.body.addEventListener('mousemove', (e: MouseEvent) => {
-    const target = e.target as HTMLElement
-    const cursorHover = !!(target.tagName.toLowerCase() === 'button') || !!(target.tagName.toLowerCase() === 'a') || target.classList.contains('hoverable')
+class Cursor {
+  cursorEl: HTMLElement
+  cursorX: number = 0
+  cursorY: number = 0
+  cursorHover: boolean = false
+  cursorActive: boolean = false
 
-    const mouseX = e.clientX
-    const mouseY = e.clientY
+  constructor(cursorEl: HTMLElement) {
+    this.cursorEl = cursorEl
 
-    document.querySelector<HTMLElement>('.cursor')!.style.opacity = '1'
-    document.querySelector<HTMLElement>('.cursor')!.style.transform = `translate(calc(${mouseX}px - .2rem), calc(${mouseY}px - .2rem)) scale(${cursorHover ? 3 : 1})`
-  })
+    this.init()
+  }
 
-  document.body.addEventListener('mouseleave', (e: MouseEvent) => {
-    document.querySelector<HTMLElement>('.cursor')!.style.opacity = '0'
-  })
+  init() {
+    this.listeners()
+    this.loop()
+  }
+
+  loop() {
+    this.cursorEl.style.opacity = this.cursorActive ? '1' : '0'
+    this.cursorEl.style.transform = `translate(calc(${this.cursorX}px - .2rem), calc(${this.cursorY}px - .2rem)) scale(${this.cursorHover ? 3 : 1})`
+
+    requestAnimationFrame(this.loop.bind(this))
+  }
+
+  listeners() {
+    document.body.addEventListener('mousemove', e => {
+      this.cursorActive = true
+
+      this.cursorX = e.clientX
+      this.cursorY = e.clientY
+
+      const target = e.target as HTMLElement
+      this.cursorHover = !!(target.tagName.toLowerCase() === 'button') || !!(target.tagName.toLowerCase() === 'a') || target.classList.contains('hoverable')
+    })
+
+    document.body.addEventListener('mouseleave', e => {
+      this.cursorActive = false
+    })
+  }
 }
 
 onMounted(() => {
-  cursorAnimation()
+  new Cursor(document.querySelector('.cursor')!)
 })
 </script>
 
@@ -37,7 +62,7 @@ onMounted(() => {
   border-radius: 100%;
   z-index: 98;
   opacity: 0;
-  transition: .5s ease-out;
+  transition: .5s cubic-bezier(0.61, 1, 0.88, 1);
   pointer-events: none;
 }
 </style>
