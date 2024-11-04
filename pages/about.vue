@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { animate, inView, scroll } from 'motion';
-import { clipPaths } from '~/static/clipPaths';
-import { easeInOutExpo } from '~/static/easings';
+import { easeInOutExpo, easeOutBack } from '~/static/easings';
 
 const frontendSkills: string[] = [
   'JavaScript/TypeScript ES6+',
@@ -14,8 +13,12 @@ const frontendSkills: string[] = [
 const backendSkills: string[] = [
   'ExpressJS, SocketIO, NestJS (production experience), ElysiaJS',
   'NodeJS for simple I/O',
-  'Docker',
   'Nginx, MongoDB & PostgreSQL, Ubuntu (for based and advanced usage)'
+]
+
+const otherSkills: string[] = [
+  'Docker',
+  'VSCode (with extension batteries ofc)'
 ]
 
 definePageMeta({ pageTransition })
@@ -27,9 +30,10 @@ async function scrollPage() {
     scroll(
       animate(info => {
         movingEls.forEach(moving => {
-          const progress = info * Number(moving.dataset.speed || 100)
+          const translate = info * Number(moving.dataset.translate || 0)
+          const rotate = info * Number(moving.dataset.rotate || 0)
 
-          moving.style.transform = `translate(0, ${progress}%)`
+          moving.style.transform = `translate(0, ${translate}%) rotate(${rotate}deg)`
         })
       }),
       {
@@ -40,8 +44,10 @@ async function scrollPage() {
 
     movingEls.forEach(moving => {
       inView(moving, () => {
-        animate(moving, { clipPath: [...clipPaths.toBottom] }, { duration: 1, easing: easeInOutExpo })
-      }, { margin: '0px 0px -250px 0px' })
+        animate(moving, { scale: [0, 1] }, { duration: .8, easing: easeOutBack })
+
+        return () => animate(moving, { scale: [1, 0] }, { duration: .8, easing: easeInOutExpo })
+      }, { margin: '-200px 0px -200px 0px' })
     })
   })
 }
@@ -66,7 +72,14 @@ onMounted(() => {
         <p>
           From time to time inspiration strikes and I want to make something of my own. So, for example, my <NuxtLink to="/project/olumni chat"><b class="hoverable">pet olumni project</b></NuxtLink> was born (WebRTC chat, built first on SFU and then on MESH architecture).
         </p>
-        <img data-speed="20" class="image image__me moving" src="/images/me-cozy.jpg" alt="section image">
+        <img
+          class="image image__me moving"
+          data-translate="20"
+          data-rotate="20"
+          style="--motion-scale: 0"
+          src="/images/me-cozy.jpg"
+          alt="section image"
+        >
       </section>
       <section>
         <h3>My Skills</h3>
@@ -78,15 +91,58 @@ onMounted(() => {
         </p>
         <ul>
           <li v-for="skill in frontendSkills" :key="skill">{{ skill }}</li>
+          <img
+            class="image image__cat moving"
+            data-translate="50"
+            data-rotate="20"
+            style="--motion-scale: 0"
+            src="/images/cat-frontend.jpg"
+            alt="section image"
+          >
         </ul>
         <p>
           <b>Backend Skills:</b>
         </p>
         <ul>
           <li v-for="skill in backendSkills" :key="skill">{{ skill }}</li>
+          <img
+            class="image image__cat moving"
+            data-translate="50"
+            data-rotate="-20"
+            style="--motion-scale: 0"
+            src="/images/cat-backend.jpg"
+            alt="section image"
+          >
+        </ul>
+        <p>
+          <b>Other skills:</b>
+        </p>
+        <ul>
+          <li v-for="skill in otherSkills" :key="skill">{{ skill }}</li>
+          <img
+            class="image image__cat moving"
+            data-translate="50"
+            style="--motion-scale: 0"
+            src="/images/cat.webp"
+            alt="section image"
+          >
         </ul>
         <p>*I also write in Rust. I like it a lot, but I'm still too little expert in it... Well, I mean, I can set up Tauri, I can write a basic backend, but the complicated stuff is still complicated stuff for me.</p>
-        <img data-speed="50" class="image image__rick moving" src="/images/rick.png" alt="section image">
+        <img
+          class="image image__rick moving"
+          data-translate="50"
+          data-rotate="-50"
+          style="--motion-scale: 0"
+          src="/images/rick.png"
+          alt="section image"
+        >
+        <img
+          class="image image__code moving"
+          data-translate="100"
+          style="--motion-scale: 0"
+          src="/images/code.svg"
+          alt="section image"
+        >
       </section>
       <div class="cv">
         <p>You can downlaod my CV using this button:</p>
@@ -100,7 +156,6 @@ onMounted(() => {
 .about-page {
   section {
     position: relative;
-
     padding-bottom: 2rem;
 
     h3, p, ul, li {
@@ -113,14 +168,17 @@ onMounted(() => {
       margin-bottom: 1rem;
       max-width: 20rem;
     }
+
+    a:hover {
+      text-decoration: underline;
+    }
   }
 
   .image {
+    scale: var(--motion-scale);
     filter: grayscale(1);
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     pointer-events: none;
     position: absolute;
-    will-change: transform opacity;
     top: 0;
     left: 50%;
 
@@ -134,6 +192,19 @@ onMounted(() => {
       left: 60%;
       width: 5rem;
       rotate: 10deg;
+    }
+
+    &__code {
+      top: 5%;
+      left: 75%;
+      width: 5rem;
+      rotate: 10deg;
+    }
+
+    &__cat {
+      top: -50%;
+      left: 100%;
+      width: 10rem;
     }
   }
 
