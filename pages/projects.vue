@@ -9,7 +9,9 @@ onMounted(() => {
 <template>
   <div class="projects-page">
     <Header title="Projects" />
-    <Drafts />
+    <div class="container">
+      <Drafts />
+    </div>
   </div>
 </template>
 

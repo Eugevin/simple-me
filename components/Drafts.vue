@@ -113,5 +113,36 @@ function draftDownHandler(e: MouseEvent) {
   .hide {
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
   }
+
+  @include touch {
+    // TODO: Cringe...
+    height: calc(100vh - 5rem);
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    position: static;
+
+    &__description {
+      order: 999;
+      position: static !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+      max-width: 20rem;
+    }
+
+    &__item {
+      position: static !important;
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+      clip-path: none !important;
+      width: 100%;
+    }
+  }
 }
 </style>

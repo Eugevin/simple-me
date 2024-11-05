@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern'
+          api: 'modern',
+          additionalData: '@use "~/assets/scss/_media.scss" as *;'
         }
       }
     }

@@ -107,9 +107,6 @@ provide('loaded', loaded)
   <div id="transition">
     <h2>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h2>
   </div>
-  <div class="mobile">
-    <h1>Mobile version coming soon</h1>
-  </div>
   <Preloader />
   <main v-show="loaded">
     <NuxtPage />
@@ -141,25 +138,6 @@ provide('loaded', loaded)
     background: url('/images/bg.png');
     opacity: 0.5;
     z-index: -1;
-  }
-}
-
-.mobile {
-  z-index: 999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: none;
-  background: black;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  @media screen and (max-width: 1100px) {
-    display: flex;    
   }
 }
 </style>

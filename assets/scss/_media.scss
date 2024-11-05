@@ -1,1 +1,13 @@
 // hover: none // media //
+
+@mixin touch {
+  @media screen and (hover: none) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}

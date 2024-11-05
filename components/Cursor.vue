@@ -64,5 +64,9 @@ onMounted(() => {
   opacity: 0;
   transition: .5s cubic-bezier(0.61, 1, 0.88, 1);
   pointer-events: none;
+
+  @include touch {
+    display: none;
+  }
 }
 </style>

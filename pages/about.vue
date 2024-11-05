@@ -57,7 +57,7 @@ useAnimations(scrollPage)
 
 <template>
   <div class="about-page">
-    <Header title="about" />
+    <Header title="about me" />
     <div class="container">
       <section>
         <h3>My name is Eugene</h3>

@@ -46,16 +46,5 @@ onMounted(() => {
     pointer-events: none;
     visibility: hidden;
   }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: url('/images/bg.png');
-    z-index: -1;
-  }
 }
 </style>
