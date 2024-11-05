@@ -101,20 +101,20 @@ provide('drafts', drafts)
 
 <template>
   <Cursor />
+  <div id="transition">
+    <h2>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h2>
+  </div>
+  <div class="mobile">
+    <h1>Mobile version coming soon</h1>
+  </div>
   <main>
     <NuxtPage />
-    <div class="transition">
-      <h2>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h2>
-    </div>
-    <div class="mobile">
-      <h1>Mobile version coming soon</h1>
-    </div>
   </main>
   <Footer />
 </template>
 
 <style scoped lang="scss">
-.transition {
+#transition {
   position: fixed;
   top: 0;
   left: 0;
@@ -141,6 +141,7 @@ provide('drafts', drafts)
 }
 
 .mobile {
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
