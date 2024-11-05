@@ -135,7 +135,7 @@ provide('loaded', loaded)
     left: 0;
     height: 100%;
     width: 100%;
-    background: url('/images/bg.png');
+    background: url('/images/bg.webp');
     opacity: 0.5;
     z-index: -1;
   }

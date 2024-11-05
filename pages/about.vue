@@ -75,7 +75,7 @@ useAnimations(scrollPage)
           data-translate="20"
           data-rotate="20"
           style="--motion-scale: 0"
-          src="/images/me-cozy.jpg"
+          src="/images/me-cozy.webp"
           alt="section image"
         >
       </section>
@@ -94,7 +94,7 @@ useAnimations(scrollPage)
             data-translate="50"
             data-rotate="20"
             style="--motion-scale: 0"
-            src="/images/cat-frontend.jpg"
+            src="/images/cat-frontend.webp"
             alt="section image"
           >
         </ul>
@@ -108,7 +108,7 @@ useAnimations(scrollPage)
             data-translate="50"
             data-rotate="-20"
             style="--motion-scale: 0"
-            src="/images/cat-backend.jpg"
+            src="/images/cat-backend.webp"
             alt="section image"
           >
         </ul>
@@ -131,7 +131,7 @@ useAnimations(scrollPage)
           data-translate="50"
           data-rotate="-50"
           style="--motion-scale: 0"
-          src="/images/rick.png"
+          src="/images/rick.webp"
           alt="section image"
         >
         <img
