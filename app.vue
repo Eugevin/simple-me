@@ -95,8 +95,11 @@ const drafts: Draft[] = [
   },
 ]
 
+const loaded = ref<boolean>(false)
+
 provide('pages', pages)
 provide('drafts', drafts)
+provide('loaded', loaded)
 </script>
 
 <template>
@@ -107,7 +110,8 @@ provide('drafts', drafts)
   <div class="mobile">
     <h1>Mobile version coming soon</h1>
   </div>
-  <main>
+  <Preloader />
+  <main v-show="loaded">
     <NuxtPage />
   </main>
   <Footer />

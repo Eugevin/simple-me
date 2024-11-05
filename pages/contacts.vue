@@ -8,7 +8,7 @@ function openSocial(url: string) {
   window.open(url, '_blank')
 }
 
-function lineAnimation() {
+function showPage() {
   const motions = document.querySelectorAll<SVGElement>('.motion')!
 
   motions.forEach(motion => {
@@ -26,9 +26,7 @@ function lineAnimation() {
   })
 }
 
-onMounted(() => {
-  lineAnimation()
-})
+useAnimations(showPage)
 </script>
 
 <template>

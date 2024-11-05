@@ -12,16 +12,12 @@ const drafts = inject('drafts') as Draft[]
 const currentDraft = drafts.find(draft => draft.title === String(route.params.id))
 
 async function showPage() {
-  await wait()
-
   animate('.project .project__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo })
   animate('.project .project__stack', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 0.8, easing: easeInOutExpo })
   animate('.project .project__description', { visibility: 'visible', clipPath: [...clipPaths.toBottom]}, { delay: 0.3, duration: 0.6, easing: easeInOutExpo })
 }
 
-onMounted(() => {
-  showPage()
-})
+useAnimations(showPage)
 </script>
 
 <template>

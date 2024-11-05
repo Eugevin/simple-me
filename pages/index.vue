@@ -35,9 +35,7 @@ async function showPage() {
   animate('.me__pages button', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.25), easing: easeInOutExpo })
 }
 
-onMounted(() => {
-  showPage()
-})
+useAnimations(showPage)
 </script>
 
 <template>

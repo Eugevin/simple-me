@@ -2,27 +2,20 @@
 import { animate } from 'motion';
 import { easeInOutExpo } from '~/static/easings';
 
-const emit = defineEmits<{
-  loaded: []
-}>()
-
 const preloadState = ref<number>(0)
+const loaded = inject('loaded') as Ref<boolean>
 
 async function preload() {
-  document.body.style.overflow = 'hidden'
-
-  animate('.preloader p', { visibility: 'visible', opacity: [0, 1] }, { duration: .5, easing: easeInOutExpo }).finished
+  animate('.preloader p', { visibility: 'visible', opacity: [0, 1] }, { duration: .5, easing: easeInOutExpo })
 
   await animate(
     (progress) => preloadState.value = Math.round(progress * 100),
     { duration: 1, easing: easeInOutExpo }
   ).finished
 
-  document.body.style.overflow = 'initial'
+  animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: 1, easing: easeInOutExpo })
 
-  emit('loaded')
-
-  animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: 1, easing: easeInOutExpo }).finished
+  loaded.value = true
 }
 
 onMounted(() => {

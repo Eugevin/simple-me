@@ -52,9 +52,7 @@ async function scrollPage() {
   })
 }
 
-onMounted(() => {
-  scrollPage()
-})
+useAnimations(scrollPage)
 </script>
 
 <template>
