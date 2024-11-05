@@ -13,11 +13,12 @@
 
 <style scoped lang="scss">
 .footer {
-  font-size: 0.8rem;
   padding: 5rem 0 1rem;
   text-align: center;
 
   p {
+    font-size: 0.4rem;
+    line-height: 1;
     display: flex;
     flex-direction: column;
     gap: .25rem;
