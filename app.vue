@@ -105,13 +105,15 @@ provide('loaded', loaded)
 <template>
   <Cursor />
   <div id="transition">
-    <h2>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h2>
+    <h3>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h3>
   </div>
   <Preloader />
-  <main v-show="loaded">
-    <NuxtPage />
-  </main>
-  <Footer />
+  <template v-show="loaded">
+    <main>
+      <NuxtPage />
+    </main>
+    <Footer />
+  </template>
 </template>
 
 <style scoped lang="scss">
@@ -127,6 +129,11 @@ provide('loaded', loaded)
   visibility: hidden;
   background: var(--black);
   z-index: 99;
+
+  h3 {
+    font-weight: 800;
+    text-transform: uppercase;
+  }
 
   &::before {
     content: "";

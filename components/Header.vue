@@ -82,6 +82,7 @@ onMounted(() => {
 
   &__title {
     padding: 1rem 0;
+    max-width: 90%;
   }
 
   &__menu {

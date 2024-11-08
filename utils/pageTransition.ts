@@ -12,7 +12,7 @@ const meta: PageMeta = {
       done()
     },
     onLeave: async (_el, done) => {
-      animate('#transition h2', { scale: [1, 1.25] }, { duration: 3, easing: 'linear' })
+      animate('#transition h3', { scale: [1, 1.25] }, { duration: 3, easing: 'linear' })
       await animate('#transition', { visibility: 'visible', clipPath: ['polygon(0 0, 0 0, 0 100%, 0% 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'] }, { duration: 1, easing: easeInOutExpo }).finished
       done()
     },

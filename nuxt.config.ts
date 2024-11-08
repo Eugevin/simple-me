@@ -4,7 +4,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'Eugene Vinokurov | Frontend Developer'
+      title: 'Eugene Vinokurov | Frontend Developer',
+      meta: [
+        { name: 'description', content: 'Frontend Developer (Vue.js, TypeScript, JavaScript)' }
+      ],
+      htmlAttrs: {
+        lang: 'en'
+      }
     }
   },
   vite: {

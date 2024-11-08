@@ -1,8 +1,18 @@
 <script setup lang="ts">
 definePageMeta({ pageTransition })
 
+function overflowHandler() {
+  document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
+}
+
 onMounted(() => {
-  document.body.style.overflow = 'hidden'
+  overflowHandler()
+
+  window.addEventListener('resize', overflowHandler)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', overflowHandler)
 })
 </script>
 
