@@ -27,11 +27,9 @@ const words: string[] = [
 
 const pages = inject('pages') as Page[]
 
-async function showPage() {
-  await animate('.index-page', { visibility: 'visible', opacity: [0, 1] }, { duration: 1, easing: easeInOutExpo }).finished
-  animate('.fastline', { visibility: 'visible', opacity: [0, 1], transform: ['translateY(-100%)', 'translateY(0)']}, { duration: 1, easing: easeInOutExpo })
-  await animate('.me__title span', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.05), easing: easeInOutExpo }).finished
-  animate('.me__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo }).finished
+function showPage() {
+  animate('.me__title span', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.05), easing: easeInOutExpo })
+  animate('.me__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo })
   animate('.me__pages button', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.25), easing: easeInOutExpo })
 }
 
@@ -60,11 +58,6 @@ useAnimations(showPage)
 <style scoped lang="scss">
 .index-page {
   position: relative;
-  visibility: hidden;
-
-  .fastline {
-    visibility: hidden;
-  }
 
   .me {
     margin-top: 1rem;

@@ -27,6 +27,7 @@ useAnimations(showPage)
       <div class="project" v-if="currentDraft">
         <div class="project__image">
           <img :src="`${currentDraft.image.split('.webp')[0]}-vertical.webp`" alt="project image">
+          <img :src="`${currentDraft.image.split('.webp')[0]}.webp`" alt="project image">
         </div>
         <div class="project__stack">{{ currentDraft.stack }}</div>
         <div class="project__description">
@@ -55,16 +56,25 @@ useAnimations(showPage)
 
     &__image {
       visibility: hidden;
-      width: 100%;
       overflow: hidden;
       grid-area: image;
       filter: grayscale(1);
 
       img {
         width: 100%;
-        height: 100%;
-        transform: scale(1.1);
         object-fit: cover;
+
+        + img {
+          display: none;
+        }
+
+        @include tablet {
+          display: none;
+
+          + img {
+            display: block;
+          }
+        }
       }
     }
 
@@ -156,6 +166,13 @@ useAnimations(showPage)
         z-index: 0;
         pointer-events: none;
       }
+    }
+
+    @include tablet {
+      grid-template-areas:
+        "image"
+        "stack"
+        "description";
     }
   }
 }

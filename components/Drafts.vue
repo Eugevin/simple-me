@@ -116,9 +116,7 @@ function draftDownHandler(e: MouseEvent) {
 
   @include touch {
     // TODO: Cringe...
-    height: calc(100vh - 5rem);
     width: 100%;
-    overflow: scroll;
     display: flex;
     align-items: center;
     text-align: center;
@@ -143,6 +141,11 @@ function draftDownHandler(e: MouseEvent) {
       clip-path: none !important;
       width: 100%;
     }
+  }
+
+  @include touch {
+    height: auto;
+    position: static;
   }
 }
 </style>
