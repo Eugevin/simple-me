@@ -3,19 +3,32 @@ import { animate } from 'motion';
 import { easeInOutExpo } from '~/static/easings';
 
 const preloadState = ref<number>(0)
-const loaded = inject('loaded') as Ref<boolean>
+const { data: preloadImages } = await useFetch<string[]>('/api/preload')
+const loaded = useState<boolean>('loaded')
 
 async function preload() {
-  animate('.preloader p', { visibility: 'visible', opacity: [0, 1] }, { duration: .5, easing: easeInOutExpo })
+  await Promise.allSettled(preloadImages.value!.map(src => {
+    return new Promise<void>(resolve => {
+      const img = new Image()
+      img.src = `/images/${src}`
 
-  await animate(
-    (progress) => preloadState.value = Math.round(progress * 100),
-    { duration: 1, easing: easeInOutExpo }
-  ).finished
+      img.addEventListener('load', () => {
+        preloadState.value += Math.floor(100 / preloadImages.value!.length)
+        resolve()
+      })
+    })
+  }))
 
-  animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: 1, easing: easeInOutExpo })
+  if (preloadState.value >= 95) {
+    preloadState.value = 100
+    animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: .5, easing: easeInOutExpo })
+    loaded.value = true
 
-  loaded.value = true
+    return
+  }
+
+  // TODO: Cringe? Yup, it is, delete it
+  alert('Assets loading error')
 }
 
 onMounted(() => {
@@ -44,7 +57,6 @@ onMounted(() => {
 
   p {
     pointer-events: none;
-    visibility: hidden;
   }
 }
 </style>

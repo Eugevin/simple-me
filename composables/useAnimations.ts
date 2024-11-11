@@ -1,6 +1,6 @@
 export function useAnimations(fn: Function) {
   let animationsActive: boolean = false
-  const loaded = inject('loaded') as Ref<boolean>
+  const loaded = useState<boolean>('loaded')
 
   watch(loaded, () => {
     animationsActive = true

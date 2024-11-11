@@ -30,8 +30,8 @@ useAnimations(showPage)
     <div class="container">
       <div class="project" v-if="currentDraft">
         <div class="project__image">
-          <img :src="`${currentDraft.image.split('.webp')[0]}-vertical.webp`" alt="project image">
-          <img :src="`${currentDraft.image.split('.webp')[0]}.webp`" alt="project image">
+          <img :src="`/images/drafts/${currentDraft.image.split('.')[0]}-v.webp`" alt="project image">
+          <img :src="`/images/drafts/${currentDraft.image}`" alt="project image">
         </div>
         <div class="project__stack">{{ currentDraft.stack }}</div>
         <div class="project__description">

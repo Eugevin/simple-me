@@ -61,7 +61,7 @@ function draftDownHandler(e: MouseEvent) {
 <template>
   <div class="drafts" @mousemove="draftMoveHandler" @mouseleave="draftLeaveHandler" @wheel="draftWheelhandler" @mousedown="draftDownHandler">
     <div class="drafts__description" :class="{ active: activeMoving }">Some of my <b>projects</b>, that i can show to you, hermano:</div>
-    <img :src="draft.image" :data-link="`/project/${draft.title}`" :style="`--speed: ${1 - i / 10}s`" alt="project image" class="drafts__item hoverable" v-for="draft, i in drafts" :key="draft.image" >
+    <img :src="`/images/drafts/${draft.image}`" :data-link="`/project/${draft.title}`" :style="`--speed: ${1 - i / 10}s`" alt="project image" class="drafts__item hoverable" v-for="draft, i in drafts" :key="draft.image" >
   </div>
 </template>
 

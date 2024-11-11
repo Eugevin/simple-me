@@ -20,10 +20,9 @@ const pages: Page[] = [
   }
 ]
 
-const loaded = ref<boolean>(false)
+const loaded = useState<boolean>('loaded', () => false)
 
 provide('pages', pages)
-provide('loaded', loaded)
 </script>
 
 <template>

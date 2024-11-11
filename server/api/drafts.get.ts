@@ -3,7 +3,7 @@ import { Draft } from "~/types"
 const drafts: Draft[] = [
   {
     title: 'show me some',
-    image: '/images/draft-sms.webp',
+    image: 'sms.webp',
     link: '',
     description: `<b>Show Me Some</b> is my author's project together with my wife, where I am the main <b>Backend and Frontend</b> developer. The project is a <b>visual novel</b> with a lot of ramifications in a gloomy setting of an alternative <b>Middle Ages</b>.`,
     details: [
@@ -15,7 +15,7 @@ const drafts: Draft[] = [
   },
   {
     title: 'olumni chat',
-    image: '/images/draft-olumni.webp',
+    image: 'olumni.webp',
     link: 'https://olumni.ru/',
     description: '<b>Olumni Chat</b> is a UI-simple web application that allows you to <b>connect two or more people</b> in <b>audio calls</b> via <b>WebRTC</b> technology',
     details: [
@@ -27,7 +27,7 @@ const drafts: Draft[] = [
   },
   {
     title: 'r52.ru',
-    image: '/images/draft-r52.webp',
+    image: 'r52.webp',
     link: 'https://r52.ru/',
     description: `<b>R52.RU</b> is a multi-service agency with <b>20 years of experience</b>. They're <b>design and provide</b> effective presence, support and <b>successful development</b> of online business.`,
     details: [
@@ -39,7 +39,7 @@ const drafts: Draft[] = [
   },
   {
     title: 'travelask',
-    image: '/images/draft-travelask.webp',
+    image: 'travelask.webp',
     link: 'https://travelask.ru/',
     description: `Worked on <b>improving site health, search engine optimization, and performance troubleshooting</b> (problems related to long drags and main thread locking up for a few seconds).`,
     details: [
@@ -50,7 +50,7 @@ const drafts: Draft[] = [
   },
   {
     title: 'platinum ltd',
-    image: '/images/draft-platinum.webp',
+    image: 'platinum.webp',
     link: 'https://sidusheroes.com/',
     description: `I spent the first two months doing <b>"standard frontend"</b>, then moved to the SidusHeroes team and <b>developed multiplayer blockchain games</b> using <b>WebGL</b>.`,
     details: [
@@ -63,7 +63,7 @@ const drafts: Draft[] = [
   },
   {
     title: 'prog. product',
-    image: '/images/draft-pp.webp',
+    image: 'pp.webp',
     link: 'https://ppr.ru/',
     description: `The first six months I was engaged in the <b>development of a highly loaded "Frontend as API" system</b>, after the removal of important tasks on the project was transferred to the <b>backend development</b> department on <b>ExpressJS/Nest.js</b>.`,
     details: [
