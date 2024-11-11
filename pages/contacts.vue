@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { animate, inView } from 'motion';
-import { easeInOutExpo } from '~/static/easings';
 
 definePageMeta({ pageTransition })
 

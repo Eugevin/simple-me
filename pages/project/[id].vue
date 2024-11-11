@@ -8,8 +8,12 @@ definePageMeta({ pageTransition })
 
 const route = useRoute()
 
-const drafts = inject('drafts') as Draft[]
-const currentDraft = drafts.find(draft => draft.title === String(route.params.id))
+const { data: currentDraft } = await useFetch<Draft>(
+  '/api/drafts',
+  {
+    query: { name: route.params.id }
+  }
+)
 
 async function showPage() {
   animate('.project .project__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo })

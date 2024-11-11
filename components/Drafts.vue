@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Draft } from '~/types';
 
-const drafts = inject('drafts') as Draft[]
+const { data: drafts } = await useFetch<Draft[]>('/api/drafts')
 
 let disableAllHandlers = false
 
