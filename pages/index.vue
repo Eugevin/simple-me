@@ -25,7 +25,7 @@ const words: string[] = [
   'webgl'
 ]
 
-const pages = inject('pages') as Page[]
+const pages = useState<Page[]>('pages')
 
 function showPage() {
   animate('.me__title span', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.05), easing: easeInOutExpo })

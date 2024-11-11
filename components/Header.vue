@@ -5,7 +5,7 @@ defineProps<{
   title: string,
 }>()
 
-const pages = inject('pages') as Page[]
+const pages = useState<Page[]>('pages')
 
 const menuActive = ref<boolean>(false)
 

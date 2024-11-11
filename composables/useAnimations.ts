@@ -12,6 +12,6 @@ export function useAnimations(fn: Function) {
       if (loaded.value && !animationsActive) {
         fn()
       }
-    }, 1000)
+    }, 500)
   })
 }
