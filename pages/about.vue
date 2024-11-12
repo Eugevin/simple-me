@@ -45,8 +45,6 @@ async function scrollPage() {
     movingEls.forEach(moving => {
       inView(moving, () => {
         animate(moving, { scale: [0, 1] }, { duration: .8, easing: easeOutBack })
-
-        return () => animate(moving, { scale: [1, 0] }, { duration: .8, easing: easeInOutExpo })
       }, { margin: '-200px 0px -200px 0px' })
     })
   })

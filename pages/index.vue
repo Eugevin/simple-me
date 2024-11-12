@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { animate, stagger } from 'motion';
+import { animate, stagger, type MotionKeyframesDefinition } from 'motion';
 import { clipPaths } from '~/static/clipPaths';
-import { easeInOutExpo } from '~/static/easings';
+import { easeInOutExpo, easeOutBack } from '~/static/easings';
 import type { Page } from '~/types';
 
 definePageMeta({ pageTransition })
@@ -28,9 +28,15 @@ const words: string[] = [
 const pages = useState<Page[]>('pages')
 
 function showPage() {
-  animate('.me__title span', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.05), easing: easeInOutExpo })
-  animate('.me__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo })
-  animate('.me__pages button', { visibility: 'visible', opacity: [0, 1] }, { delay: stagger(0.25), easing: easeInOutExpo })
+  const defaultFadeUp: MotionKeyframesDefinition = {
+    visibility: 'visible',
+    opacity: [0, 1],
+    transform: ['translateY(1rem)', '0']
+  }
+
+  animate('.me__title span', defaultFadeUp, { delay: stagger(0.05), easing: easeOutBack })
+  animate('.me__image', { visibility: 'visible', clipPath: clipPaths.toRight}, { duration: 1, easing: easeInOutExpo })
+  animate('.me__pages button', defaultFadeUp, { delay: stagger(0.25), easing: easeInOutExpo })
 }
 
 useAnimations(showPage)
@@ -68,6 +74,8 @@ useAnimations(showPage)
     &__title {
       span {
         visibility: hidden;
+        min-width: 1rem;
+        display: inline-block;
       }
     }
 
