@@ -1,16 +1,16 @@
 <script setup lang="ts">
 definePageMeta({ pageTransition })
 
-function overflowHandler() {
-  document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
-
-  window.addEventListener('resize', () => {
-    document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
-  })
-}
+const resizeController = new AbortController()
 
 onMounted(() => {
-  overflowHandler()
+  window.addEventListener('resize', () => {
+    document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
+  }, { signal: resizeController.signal })
+})
+
+onUnmounted(() => {
+  resizeController.abort()
 })
 </script>
 

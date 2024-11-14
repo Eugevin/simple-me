@@ -1,6 +1,6 @@
 @use 'fonts';
 @use 'vars';
-@use 'media';
+@use 'mixins';
 
 *, *::before, *::after {
   margin: 0;
@@ -23,14 +23,7 @@ html {
   }
 
   &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: url('/images/bg.webp');
-    z-index: -1;
+    @include noise;
   }
 }
 

@@ -46,18 +46,11 @@ const pages = useState<Page[]>('pages', () => {
   h3 {
     font-weight: 800;
     text-transform: uppercase;
+    will-change: transform;
   }
 
   &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: url('/images/bg.webp');
-    opacity: 0.5;
-    z-index: -1;
+    @include noise;
   }
 }
 </style>

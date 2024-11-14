@@ -1,0 +1,24 @@
+@mixin touch {
+  @media screen and (hover: none) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin noise {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.05;
+  background: url('/images/bg.webp');
+  z-index: 1;
+  pointer-events: none;
+}

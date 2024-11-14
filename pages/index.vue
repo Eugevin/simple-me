@@ -28,18 +28,27 @@ const words: string[] = [
 const pages = useState<Page[]>('pages')
 
 function showPage() {
-  const defaultFadeUp: MotionKeyframesDefinition = {
+  const defaultFadeIn: MotionKeyframesDefinition = {
     visibility: 'visible',
-    opacity: [0, 1],
-    transform: ['translateY(1rem)', '0']
+    opacity: [0, 1]
   }
 
-  animate('.me__title span', defaultFadeUp, { delay: stagger(0.05), easing: easeOutBack })
+  animate('.me__title span', defaultFadeIn, { delay: stagger(0.05), easing: easeOutBack })
   animate('.me__image', { visibility: 'visible', clipPath: clipPaths.toRight}, { duration: 1, easing: easeInOutExpo })
-  animate('.me__pages button', defaultFadeUp, { delay: stagger(0.25), easing: easeInOutExpo })
+  animate('.me__pages button', defaultFadeIn, { delay: stagger(0.25), easing: easeInOutExpo })
 }
 
 useAnimations(showPage)
+
+useHead({
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/images/me.webp'
+    }
+  ]
+})
 </script>
 
 <template>
@@ -50,9 +59,12 @@ useAnimations(showPage)
         <h1 class="me__title">
           <span v-for="letter in 'Eugene Vinokurov'" :key="letter">{{ letter }}</span>
         </h1>
-        <div class="me__image">
-          <img src="/images/me.webp" alt="my photo" class="me__image">
-        </div>
+        <figure class="me__image">
+          <picture>
+            <source media="(min-width: 2000px)" srcset="/images/me-4k.webp" >
+            <img src="/images/me.webp" alt="my photo" class="me__image">
+          </picture>
+        </figure>
         <div class="me__pages">
           <Input type="button" v-for="page in pages.filter(page => page.title !== 'home')" :key="page.title" @click="navigateTo(page.link)">{{ page.title.toUpperCase() }}</Input>
         </div>
@@ -74,8 +86,6 @@ useAnimations(showPage)
     &__title {
       span {
         visibility: hidden;
-        min-width: 1rem;
-        display: inline-block;
       }
     }
 

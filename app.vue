@@ -8,6 +8,6 @@ const loaded = useState<boolean>('loaded', () => false)
   <Preloader />
   <main v-show="loaded">
     <NuxtPage />
+    <Footer />
   </main>
-  <Footer />
 </template>

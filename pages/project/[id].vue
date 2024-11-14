@@ -159,16 +159,8 @@ useAnimations(showPage)
       position: relative;
 
       &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background: url('/images/bg.webp');
-        opacity: 0.1;
+        @include noise;
         z-index: 0;
-        pointer-events: none;
       }
     }
 
