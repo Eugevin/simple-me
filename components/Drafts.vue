@@ -156,6 +156,7 @@ function draftDownHandler(e: MouseEvent) {
       position: static !important;
       opacity: 1 !important;
       transform: none !important;
+      scale: none !important;
       visibility: visible !important;
       clip-path: none !important;
       width: 100%;

@@ -202,6 +202,7 @@ onMounted(() => {
   position: relative;
   mix-blend-mode: difference;
   z-index: 9;
+  margin-bottom: 2rem;
 
   .container {
     position: relative;

@@ -60,7 +60,7 @@ useAnimations(scrollPage)
       <section>
         <h3>My name is Eugene</h3>
         <p>
-          I am Frontend development on Vanilla JS, TypeScript and Vue.js (primarly).
+          I am Frontend developer on Vanilla JS, TypeScript and Vue.js (primarly).
         </p>
         <p>
           On the whole, I'm just an ordinary guy from Nizhny Novgorod who somehow likes writing code since childhood. I write code at home, write code before going to bed, write code at my parents' cottage. I learned to write code with the help of the method: “WRITE CODE, READ DOCUMENTATION”.

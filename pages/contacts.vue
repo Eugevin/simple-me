@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { animate, inView } from 'motion'
+import { inView } from 'motion'
 
 definePageMeta({ pageTransition })
 
@@ -15,11 +15,8 @@ function showPage() {
 
     inView(motion, () => {
       motionPaths.forEach((path, i) => {
-        animate((progress) => {
-          path.style.visibility = 'visible'
-          path.style.strokeDasharray = `${path.getTotalLength()}`
-          path.style.strokeDashoffset = `${path.getTotalLength() - path.getTotalLength() * progress}`
-        }, { delay: i * 0.2, duration: 0.2, easing: 'linear' })
+        path.style.setProperty('--dasharray', `${path.getTotalLength()}`)
+        path.style.setProperty('--delay', `${i * 0.2}s`)
       })
     }, { margin: '0px 0px -200px 0px' })
   })
@@ -446,14 +443,30 @@ useAnimations(showPage)
   }
 
   .motion {
-    visibility: hidden;
     position: absolute;
     height: 5rem;
     width: 5rem;
     pointer-events: none;
 
     path {
+      opacity: 0;
       stroke: var(--white);
+      stroke-dasharray: var(--dasharray);
+      animation: motionAnimation .2s var(--delay) linear forwards;
+    }
+  }
+
+  @keyframes motionAnimation {
+    0% {
+      opacity: 0;
+      stroke-dashoffset: var(--dasharray);
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      stroke-dashoffset: 0;
     }
   }
 
