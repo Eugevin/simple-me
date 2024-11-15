@@ -4,6 +4,8 @@ definePageMeta({ pageTransition })
 const resizeController = new AbortController()
 
 onMounted(() => {
+  document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
+
   window.addEventListener('resize', () => {
     document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
   }, { signal: resizeController.signal })

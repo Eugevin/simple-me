@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import { animate, inView, scroll } from 'motion';
-import { easeInOutExpo, easeOutBack } from '~/static/easings';
+import { animate, inView, scroll } from 'motion'
+import { easeOutBack } from '~/static/easings'
 
 const frontendSkills: string[] = [
   'JavaScript/TypeScript ES6+',
   'Vue.js 3.0 with Composition API & Pinia/VueX',
   'WebRTC, WebSockets, JWT/Sessions',
   'WebGL, Canvas, Cocos2D, ThreeJS',
-  'HTML5 and CSS3 - base of web'
+  'HTML5 and CSS3 - base of web',
 ]
 
 const backendSkills: string[] = [
   'ExpressJS, SocketIO, NestJS (production experience), ElysiaJS',
   'NodeJS for simple I/O',
-  'Nginx, MongoDB & PostgreSQL, Ubuntu (for based and advanced usage)'
+  'Nginx, MongoDB & PostgreSQL, Ubuntu (for based and advanced usage)',
 ]
 
 const otherSkills: string[] = [
   'Docker',
-  'VSCode (with extension batteries ofc)'
+  'VSCode (with extension batteries ofc)',
 ]
 
 definePageMeta({ pageTransition })
 
 async function scrollPage() {
-  document.querySelectorAll<HTMLElement>('.about-page section').forEach(section => {
+  document.querySelectorAll<HTMLElement>('.about-page section').forEach((section) => {
     const movingEls = section.querySelectorAll<HTMLElement>('.moving')!
 
     scroll(
-      animate(info => {
-        movingEls.forEach(moving => {
+      animate((info) => {
+        movingEls.forEach((moving) => {
           const translate = info * Number(moving.dataset.translate || 0)
           const rotate = info * Number(moving.dataset.rotate || 0)
 
@@ -38,13 +38,13 @@ async function scrollPage() {
       }),
       {
         target: section,
-        offset: ["start end", "end start"]
-      }
+        offset: ['start end', 'end start'],
+      },
     )
 
-    movingEls.forEach(moving => {
+    movingEls.forEach((moving) => {
       inView(moving, () => {
-        animate(moving, { scale: [0, 1] }, { duration: .8, easing: easeOutBack })
+        animate(moving, { scale: [0, 1] }, { duration: 0.8, easing: easeOutBack })
       }, { margin: '-200px 0px -200px 0px' })
     })
   })
@@ -66,7 +66,9 @@ useAnimations(scrollPage)
           On the whole, I'm just an ordinary guy from Nizhny Novgorod who somehow likes writing code since childhood. I write code at home, write code before going to bed, write code at my parents' cottage. I learned to write code with the help of the method: “WRITE CODE, READ DOCUMENTATION”.
         </p>
         <p>
-          From time to time inspiration strikes and I want to make something of my own. So, for example, my <NuxtLink to="/project/olumni chat"><b class="hoverable">pet olumni project</b></NuxtLink> was born (WebRTC chat, built first on SFU and then on MESH architecture).
+          From time to time inspiration strikes and I want to make something of my own. So, for example, my <NuxtLink to="/project/olumni chat">
+            <b class="hoverable">pet olumni project</b>
+          </NuxtLink> was born (WebRTC chat, built first on SFU and then on MESH architecture).
         </p>
         <img
           class="image image__me moving"
@@ -86,7 +88,12 @@ useAnimations(scrollPage)
           <b>Frontend Skills:</b>
         </p>
         <ul>
-          <li v-for="skill in frontendSkills" :key="skill">{{ skill }}</li>
+          <li
+            v-for="skill in frontendSkills"
+            :key="skill"
+          >
+            {{ skill }}
+          </li>
           <img
             class="image image__cat moving"
             data-translate="50"
@@ -100,7 +107,12 @@ useAnimations(scrollPage)
           <b>Backend Skills:</b>
         </p>
         <ul>
-          <li v-for="skill in backendSkills" :key="skill">{{ skill }}</li>
+          <li
+            v-for="skill in backendSkills"
+            :key="skill"
+          >
+            {{ skill }}
+          </li>
           <img
             class="image image__cat moving"
             data-translate="50"
@@ -114,7 +126,12 @@ useAnimations(scrollPage)
           <b>Other skills:</b>
         </p>
         <ul>
-          <li v-for="skill in otherSkills" :key="skill">{{ skill }}</li>
+          <li
+            v-for="skill in otherSkills"
+            :key="skill"
+          >
+            {{ skill }}
+          </li>
           <img
             class="image image__cat moving"
             data-translate="50"
@@ -142,7 +159,9 @@ useAnimations(scrollPage)
       </section>
       <div class="cv">
         <p>You can downlaod my CV using this button:</p>
-        <Input type="button">Download</Input>
+        <Input type="button">
+          Download
+        </Input>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
 import type { NuxtError } from '#app'
 
 const props = defineProps({
-  error: Object as () => NuxtError
+  error: Object as () => NuxtError,
 })
 </script>
 
@@ -10,7 +10,12 @@ const props = defineProps({
   <div class="error">
     <div class="container">
       <h1>status {{ props.error?.statusCode }}</h1>
-      <Input type="button" @click="navigateTo('/')">Go to home -></Input>
+      <Input
+        type="button"
+        @click="navigateTo('/')"
+      >
+        Go to home ->
+      </Input>
     </div>
   </div>
 </template>

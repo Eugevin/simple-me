@@ -25,7 +25,7 @@ class Cursor {
   }
 
   listeners() {
-    document.body.addEventListener('mousemove', e => {
+    document.body.addEventListener('mousemove', (e) => {
       this.cursorActive = true
 
       this.cursorX = e.clientX
@@ -35,7 +35,7 @@ class Cursor {
       this.cursorHover = !!(target.tagName.toLowerCase() === 'button') || !!(target.tagName.toLowerCase() === 'a') || target.classList.contains('hoverable')
     })
 
-    document.body.addEventListener('mouseleave', e => {
+    document.body.addEventListener('mouseleave', () => {
       this.cursorActive = false
     })
   }
@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="cursor"></div>
+  <div class="cursor" />
 </template>
 
 <style scoped lang="scss">

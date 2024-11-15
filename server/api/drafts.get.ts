@@ -1,4 +1,4 @@
-import { Draft } from "~/types"
+import type { Draft } from '~/types'
 
 const drafts: Draft[] = [
   {
@@ -9,9 +9,9 @@ const drafts: Draft[] = [
     details: [
       'Develop backend for game engine in Rust.',
       'Writing a branched script.',
-      'Writing frontend using canvas.'
+      'Writing frontend using canvas.',
     ],
-    stack: 'WebGL, Rust, TypeScript, Tauri'
+    stack: 'WebGL, Rust, TypeScript, Tauri',
   },
   {
     title: 'olumni chat',
@@ -21,9 +21,9 @@ const drafts: Draft[] = [
     details: [
       'Development of the frontend part of the application: flow control, audio processing via AudioContext, etc.',
       'Development of backend part for interactive chat and initial negotiation.',
-      'Packaging the application in Docker and CI/CD setup.'
+      'Packaging the application in Docker and CI/CD setup.',
     ],
-    stack: 'VueJS, TypeScript, ElysiaJS'
+    stack: 'VueJS, TypeScript, ElysiaJS',
   },
   {
     title: 'r52.ru',
@@ -35,7 +35,7 @@ const drafts: Draft[] = [
       'Edits on existing sites & fixing bugs.',
       'Working with Vue.js projects using VueX and VueRouter.',
     ],
-    stack: 'JavaScript, TypeScript, VueJS'
+    stack: 'JavaScript, TypeScript, VueJS',
   },
   {
     title: 'travelask',
@@ -44,9 +44,9 @@ const drafts: Draft[] = [
     description: `Worked on <b>improving site health, search engine optimization, and performance troubleshooting</b> (problems related to long drags and main thread locking up for a few seconds).`,
     details: [
       'Migration of existing functionality from VueJS to native class EcmaScript 6+.',
-      'Optimizing already written code.'
+      'Optimizing already written code.',
     ],
-    stack: 'VueJS, TypeScript, JavaScript, Nuxt'
+    stack: 'VueJS, TypeScript, JavaScript, Nuxt',
   },
   {
     title: 'platinum ltd',
@@ -57,9 +57,9 @@ const drafts: Draft[] = [
       'Writing frontend using Vue3 with Composition API, TypeScript and Pinia.',
       'Work with difficult Canvas and WebGL engines. Describing types for game entities.',
       'Work with blockchain arhitecture, making request and logic for "backendless" applications.',
-      'Error handling caused by game engine, fix bugs, adding new and refactor old functional features.'
+      'Error handling caused by game engine, fix bugs, adding new and refactor old functional features.',
     ],
-    stack: 'VueJS, Nuxt, WebGL, TypeScript'
+    stack: 'VueJS, Nuxt, WebGL, TypeScript',
   },
   {
     title: 'prog. product',
@@ -69,13 +69,13 @@ const drafts: Draft[] = [
     details: [
       'Development of systems for user authorization with a system of roles, a large number of queries to the database through the UUID.',
       'Improved project code style, utilizing new techniques and implementing productivity approaches in frontend-server development.',
-      'Writing WebAPI for multi-level data reconciliation, recalculations and working with map data.'
+      'Writing WebAPI for multi-level data reconciliation, recalculations and working with map data.',
     ],
-    stack: 'TypeScript, VueJS, NestJS, MongoDB'
+    stack: 'TypeScript, VueJS, NestJS, MongoDB',
   },
 ]
 
-export default defineEventHandler(e => {
+export default defineEventHandler((e) => {
   const filter = getQuery(e)
 
   if (filter.name) {

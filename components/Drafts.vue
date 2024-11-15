@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Draft } from '~/types';
+import type { Draft } from '~/types'
 
 const { data: drafts } = await useFetch<Draft[]>('/api/drafts')
 
 let disableAllHandlers = false
 
-let activeMoving = ref<boolean>(false)
+const activeMoving = ref<boolean>(false)
 
 function draftMoveHandler(e: MouseEvent) {
   activeMoving.value = true
@@ -14,8 +14,8 @@ function draftMoveHandler(e: MouseEvent) {
   const mouseX = e.clientX
   const mouseY = e.clientY
 
-  allDrafts.forEach(draft => {
-    // TODO: Rewrite all this shit... It's like swimming in the pool full of crap. HUGE POOL OF CRAP - it's ur code here, delete it! 
+  allDrafts.forEach((draft) => {
+    // TODO: Rewrite all this shit... It's like swimming in the pool full of crap. HUGE POOL OF CRAP - it's ur code here, delete it!
     requestAnimationFrame(() => draft.style.transform = `translate(calc(${mouseX}px - 10rem), calc(${mouseY}px - 5rem))`)
 
     if (draft.style.opacity !== '1') draft.style.opacity = '1'
@@ -29,7 +29,7 @@ function wheelHandler(e: WheelEvent) {
 
   if (e.deltaY > 0) {
     const filteredDrafts = allDrafts.filter(draft => !draft.classList.contains('hide'))
-    filteredDrafts.length > 1 ? filteredDrafts[filteredDrafts.length - 1]?.classList.add('hide') : null
+    if (filteredDrafts.length > 1) filteredDrafts[filteredDrafts.length - 1].classList.add('hide')
   }
 
   if (e.deltaY < 0) {
@@ -40,7 +40,7 @@ function wheelHandler(e: WheelEvent) {
 
 const draftWheelhandler = throttle(wheelHandler, 1000)
 
-function draftLeaveHandler(e: MouseEvent) {
+function draftLeaveHandler() {
   if (disableAllHandlers) return
 
   const allDrafts = document.querySelectorAll<HTMLElement>('.drafts .drafts__item')
@@ -59,9 +59,28 @@ function draftDownHandler(e: MouseEvent) {
 </script>
 
 <template>
-  <div class="drafts" @mousemove="draftMoveHandler" @mouseleave="draftLeaveHandler" @wheel="draftWheelhandler" @mousedown="draftDownHandler">
-    <div class="drafts__description" :class="{ active: activeMoving }">Some of my <b>projects</b>, that i can show to you, hermano:</div>
-    <img :src="`/images/drafts/${draft.image}`" :data-link="`/project/${draft.title}`" :style="`--speed: ${1 - i / 10}s`" alt="project image" class="drafts__item hoverable" v-for="draft, i in drafts" :key="draft.image" >
+  <div
+    class="drafts"
+    @mousemove="draftMoveHandler"
+    @mouseleave="draftLeaveHandler"
+    @wheel="draftWheelhandler"
+    @mousedown="draftDownHandler"
+  >
+    <div
+      class="drafts__description"
+      :class="{ active: activeMoving }"
+    >
+      Some of my <b>projects</b>, that i can show to you, hermano:
+    </div>
+    <img
+      v-for="draft, i in drafts"
+      :key="draft.image"
+      :src="`/images/drafts/${draft.image}`"
+      :data-link="`/project/${draft.title}`"
+      :style="`--speed: ${1 - i / 10}s`"
+      alt="project image"
+      class="drafts__item hoverable"
+    >
   </div>
 </template>
 

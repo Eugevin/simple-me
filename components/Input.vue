@@ -10,7 +10,10 @@ defineProps<{
       <slot />
     </span>
   </button>
-  <input v-else type="text">
+  <input
+    v-else
+    type="text"
+  >
 </template>
 
 <style scoped lang="scss">
@@ -23,7 +26,7 @@ button {
   display: inline-block;
   color: var(--white);
   cursor: pointer;
-  
+
   span {
     position: relative;
 

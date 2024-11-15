@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { animate, stagger, type MotionKeyframesDefinition } from 'motion';
-import { clipPaths } from '~/static/clipPaths';
-import { easeInOutExpo, easeOutBack } from '~/static/easings';
-import type { Page } from '~/types';
+import { animate, stagger, type MotionKeyframesDefinition } from 'motion'
+import { clipPaths } from '~/static/clipPaths'
+import { easeInOutExpo, easeOutBack } from '~/static/easings'
+import type { Page } from '~/types'
 
 definePageMeta({ pageTransition })
 
@@ -22,7 +22,7 @@ const words: string[] = [
   'socket.io',
   'ci/cd',
   'canvas',
-  'webgl'
+  'webgl',
 ]
 
 const pages = useState<Page[]>('pages')
@@ -30,11 +30,11 @@ const pages = useState<Page[]>('pages')
 function showPage() {
   const defaultFadeIn: MotionKeyframesDefinition = {
     visibility: 'visible',
-    opacity: [0, 1]
+    opacity: [0, 1],
   }
 
   animate('.me__title span', defaultFadeIn, { delay: stagger(0.05), easing: easeOutBack })
-  animate('.me__image', { visibility: 'visible', clipPath: clipPaths.toRight}, { duration: 1, easing: easeInOutExpo })
+  animate('.me__image', { visibility: 'visible', clipPath: clipPaths.toRight }, { duration: 1, easing: easeInOutExpo })
   animate('.me__pages button', defaultFadeIn, { delay: stagger(0.25), easing: easeInOutExpo })
 }
 
@@ -45,9 +45,9 @@ useHead({
     {
       rel: 'preload',
       as: 'image',
-      href: '/images/me.webp'
-    }
-  ]
+      href: '/images/me.webp',
+    },
+  ],
 })
 </script>
 
@@ -57,16 +57,33 @@ useHead({
     <div class="container">
       <div class="me">
         <h1 class="me__title">
-          <span v-for="letter in 'Eugene Vinokurov'" :key="letter">{{ letter }}</span>
+          <span
+            v-for="letter in 'Eugene Vinokurov'"
+            :key="letter"
+          >{{ letter }}</span>
         </h1>
         <figure class="me__image">
           <picture>
-            <source media="(min-width: 2000px)" srcset="/images/me-4k.webp" >
-            <img src="/images/me.webp" alt="my photo" class="me__image">
+            <source
+              media="(min-width: 2000px)"
+              srcset="/images/me-4k.webp"
+            >
+            <img
+              src="/images/me.webp"
+              alt="my photo"
+              class="me__image"
+            >
           </picture>
         </figure>
         <div class="me__pages">
-          <Input type="button" v-for="page in pages.filter(page => page.title !== 'home')" :key="page.title" @click="navigateTo(page.link)">{{ page.title.toUpperCase() }}</Input>
+          <Input
+            v-for="page in pages.filter(page => page.title !== 'home')"
+            :key="page.title"
+            type="button"
+            @click="navigateTo(page.link)"
+          >
+            {{ page.title.toUpperCase() }}
+          </Input>
         </div>
       </div>
     </div>

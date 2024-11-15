@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { animate } from 'motion';
-import { easeInOutExpo } from '~/static/easings';
+import { animate } from 'motion'
+import { easeInOutExpo } from '~/static/easings'
 
 const preloadState = ref<number>(0)
 const { data: preloadImages } = await useFetch<string[]>('/api/preload')
 const loaded = useState<boolean>('loaded')
 
 async function preload() {
-  await Promise.allSettled(preloadImages.value!.map(src => {
-    return new Promise<void>(resolve => {
+  await Promise.allSettled(preloadImages.value!.map((src) => {
+    return new Promise<void>((resolve) => {
       const img = new Image()
       img.src = `/images/${src}`
 
@@ -21,7 +21,7 @@ async function preload() {
 
   if (preloadState.value >= 95) {
     preloadState.value = 100
-    animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: .5, easing: easeInOutExpo })
+    animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: 0.5, easing: easeInOutExpo })
     loaded.value = true
 
     return

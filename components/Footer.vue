@@ -5,7 +5,7 @@
         © All rights reserved 2024
       </span>
       <span>
-        Made with 💝 by <b>Eugene Vinokurov</b>
+        Made with 💝 by <b>Eugene Vinokurov</b>
       </span>
     </p>
   </footer>

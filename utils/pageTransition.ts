@@ -1,6 +1,6 @@
-import type { PageMeta } from "#app"
-import { animate } from "motion"
-import { easeInOutExpo } from "~/static/easings"
+import { animate } from 'motion'
+import type { PageMeta } from '#app'
+import { easeInOutExpo } from '~/static/easings'
 
 const meta: PageMeta = {
   pageTransition: {
@@ -19,7 +19,7 @@ const meta: PageMeta = {
     onAfterLeave() {
       window.scrollTo(0, 0)
     },
-  }
+  },
 }
 
 export default meta.pageTransition

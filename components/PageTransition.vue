@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import type { Page } from '~/types';
+import type { Page } from '~/types'
 
 const pages = useState<Page[]>('pages', () => {
   return [
     {
       link: '/',
-      title: 'home'
+      title: 'home',
     },
     {
       link: '/projects',
-      title: 'projects'
+      title: 'projects',
     },
     {
       link: '/about',
-      title: 'about me'
+      title: 'about me',
     },
     {
       link: '/contacts',
-      title: 'contacts'
-    }
+      title: 'contacts',
+    },
   ]
 })
 </script>

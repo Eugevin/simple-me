@@ -6,8 +6,18 @@ defineProps<{
 
 <template>
   <div class="fastline">
-    <ul v-for="i in 2" class="words">
-      <li class="words__item" v-for="word in words" :key="word">{{ word }}</li>
+    <ul
+      v-for="i in 2"
+      :key="i"
+      class="words"
+    >
+      <li
+        v-for="word in words"
+        :key="word"
+        class="words__item"
+      >
+        {{ word }}
+      </li>
     </ul>
   </div>
 </template>

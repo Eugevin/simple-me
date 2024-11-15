@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { animate } from 'motion';
-import { clipPaths } from '~/static/clipPaths';
-import { easeInOutExpo } from '~/static/easings';
-import type { Draft } from '~/types';
+import { animate } from 'motion'
+import { clipPaths } from '~/static/clipPaths'
+import { easeInOutExpo } from '~/static/easings'
+import type { Draft } from '~/types'
 
 definePageMeta({ pageTransition })
 
@@ -11,14 +11,14 @@ const route = useRoute()
 const { data: currentDraft } = await useFetch<Draft>(
   '/api/drafts',
   {
-    query: { name: route.params.id }
-  }
+    query: { name: route.params.id },
+  },
 )
 
 async function showPage() {
-  animate('.project .project__image', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 1, easing: easeInOutExpo })
-  animate('.project .project__stack', { visibility: 'visible', clipPath: [...clipPaths.toRight]}, { duration: 0.8, easing: easeInOutExpo })
-  animate('.project .project__description', { visibility: 'visible', clipPath: [...clipPaths.toBottom]}, { delay: 0.3, duration: 0.6, easing: easeInOutExpo })
+  animate('.project .project__image', { visibility: 'visible', clipPath: [...clipPaths.toRight] }, { duration: 1, easing: easeInOutExpo })
+  animate('.project .project__stack', { visibility: 'visible', clipPath: [...clipPaths.toRight] }, { duration: 0.8, easing: easeInOutExpo })
+  animate('.project .project__description', { visibility: 'visible', clipPath: [...clipPaths.toBottom] }, { delay: 0.3, duration: 0.6, easing: easeInOutExpo })
 }
 
 useAnimations(showPage)
@@ -28,19 +28,39 @@ useAnimations(showPage)
   <div class="project-page">
     <Header :title="currentDraft?.title ?? 'undefined'" />
     <div class="container">
-      <div class="project" v-if="currentDraft">
+      <div
+        v-if="currentDraft"
+        class="project"
+      >
         <div class="project__image">
-          <img :src="`/images/drafts/${currentDraft.image.split('.')[0]}-v.webp`" alt="project image">
-          <img :src="`/images/drafts/${currentDraft.image}`" alt="project image">
+          <img
+            :src="`/images/drafts/${currentDraft.image.split('.')[0]}-v.webp`"
+            alt="project image"
+          >
+          <img
+            :src="`/images/drafts/${currentDraft.image}`"
+            alt="project image"
+          >
         </div>
-        <div class="project__stack">{{ currentDraft.stack }}</div>
+        <div class="project__stack">
+          {{ currentDraft.stack }}
+        </div>
         <div class="project__description">
-          <p v-html="currentDraft.description"></p>
+          <p v-html="currentDraft.description" />
           <p>Which I participated in:</p>
           <ul>
-            <li v-for="detail in currentDraft.details" :key="detail">{{ detail }}</li>
+            <li
+              v-for="detail in currentDraft.details"
+              :key="detail"
+            >
+              {{ detail }}
+            </li>
           </ul>
-          <a v-if="currentDraft.link" :href="currentDraft.link" target="_blank">to project</a>
+          <a
+            v-if="currentDraft.link"
+            :href="currentDraft.link"
+            target="_blank"
+          >to project</a>
         </div>
       </div>
     </div>
