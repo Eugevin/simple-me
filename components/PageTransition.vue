@@ -35,7 +35,7 @@ const pages = useState<Page[]>('pages', () => {
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
