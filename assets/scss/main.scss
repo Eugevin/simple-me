@@ -25,6 +25,8 @@ html {
   &::before {
     @include noise;
   }
+
+  @include scrollbar;
 }
 
 main {
