@@ -62,7 +62,7 @@ onMounted(() => {
   border-radius: 100%;
   z-index: 98;
   opacity: 0;
-  transition: .5s cubic-bezier(0.61, 1, 0.88, 1);
+  transition: .5s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 
   @include touch {
