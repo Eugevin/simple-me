@@ -19,7 +19,7 @@ class Cursor {
 
   loop() {
     this.cursorEl.style.opacity = this.cursorActive ? '1' : '0'
-    this.cursorEl.style.transform = `translate(calc(${this.cursorX}px - .2rem), calc(${this.cursorY}px - .2rem)) scale(${this.cursorHover ? 3 : 1})`
+    this.cursorEl.style.transform = `translate3d(calc(${this.cursorX}px - .2rem), calc(${this.cursorY}px - .2rem), 0) scale(${this.cursorHover ? 3 : 1})`
 
     requestAnimationFrame(this.loop.bind(this))
   }

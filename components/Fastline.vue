@@ -37,6 +37,7 @@ defineProps<{
     &__item {
       line-height: 1.5;
       padding: 0 .5rem;
+      white-space: nowrap;
     }
   }
 }

@@ -14,11 +14,13 @@ function draftMoveHandler(e: MouseEvent) {
   const mouseX = e.clientX
   const mouseY = e.clientY
 
-  allDrafts.forEach((draft) => {
-    // TODO: Rewrite all this shit... It's like swimming in the pool full of crap. HUGE POOL OF CRAP - it's ur code here, delete it!
-    requestAnimationFrame(() => draft.style.transform = `translate(calc(${mouseX}px - 10rem), calc(${mouseY}px - 5rem))`)
+  requestAnimationFrame(() => {
+    allDrafts.forEach((draft) => {
+      // TODO: Rewrite all this shit... It's like swimming in the pool full of crap. HUGE POOL OF CRAP - it's ur code here, delete it!
+      draft.style.transform = `translate3d(calc(${mouseX}px - 10rem), calc(${mouseY}px - 5rem), 0)`
 
-    if (draft.style.opacity !== '1') draft.style.opacity = '1'
+      if (draft.style.opacity !== '1') draft.style.opacity = '1'
+    })
   })
 }
 
@@ -123,7 +125,7 @@ function draftDownHandler(e: MouseEvent) {
     left: 0;
     width: 20rem;
     will-change: transform;
-    transform: translate(-100%, -100%);
+    transform: translate3d(-100%, -100%);
     opacity: 0;
     clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
     transition: var(--speed) ease-out;
