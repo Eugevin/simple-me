@@ -1,53 +1,85 @@
 <script setup lang="ts">
-class Cursor {
-  cursorEl: HTMLElement
-  cursorX: number = 0
-  cursorY: number = 0
-  cursorHover: boolean = false
-  cursorActive: boolean = false
+import type { CSSProperties } from 'vue'
+import type { Cursor } from '~/types'
 
-  constructor(cursorEl: HTMLElement) {
-    this.cursorEl = cursorEl
+// CONSTANTS
+const bigScale: number = 3
+const defaultShift: string = `.2rem`
 
-    this.init()
+// OTHER SHIT
+
+const cursor = useState<Cursor>('cursor', () => {
+  return {
+    x: 0,
+    y: 0,
+    active: false,
+    hover: false,
+  }
+})
+
+const cursorStyles = computed<CSSProperties>(() => {
+  const transform = getTransformStyle(
+    cursor.value.x,
+    cursor.value.y,
+    cursor.value.hover,
+  )
+
+  const opacity = cursor.value.active ? 1 : 0
+
+  return {
+    opacity,
+    transform,
+  }
+})
+
+function getTransformStyle(xPos: number, yPos: number, hover: boolean): string {
+  const [x, y] = [xPos, yPos].map(pos => `calc(${pos}px - ${defaultShift})`)
+  const scale = `scale(${hover ? bigScale : 1})`
+
+  return `translate3d(${x}, ${y}, 0) ${scale}`
+}
+
+function isHover(target: HTMLElement) {
+  return target.matches('button, a, .hoverable')
+}
+
+function moveHandler(e: MouseEvent) {
+  cursor.value.active = true
+
+  const { x, y } = e
+  const target = e.target as HTMLElement
+
+  cursor.value.x = x
+  cursor.value.y = y
+
+  if (isHover(target)) {
+    cursor.value.hover = true
+    return
   }
 
-  init() {
-    this.listeners()
-    this.loop()
-  }
+  cursor.value.hover = false
+}
 
-  loop() {
-    this.cursorEl.style.opacity = this.cursorActive ? '1' : '0'
-    this.cursorEl.style.transform = `translate3d(calc(${this.cursorX}px - .2rem), calc(${this.cursorY}px - .2rem), 0) scale(${this.cursorHover ? 3 : 1})`
-
-    requestAnimationFrame(this.loop.bind(this))
-  }
-
-  listeners() {
-    document.body.addEventListener('mousemove', (e) => {
-      this.cursorActive = true
-
-      this.cursorX = e.clientX
-      this.cursorY = e.clientY
-
-      const target = e.target as HTMLElement
-      this.cursorHover = !!(target.tagName.toLowerCase() === 'button') || !!(target.tagName.toLowerCase() === 'a') || target.classList.contains('hoverable')
-    })
-
-    document.body.addEventListener('mouseleave', () => {
-      this.cursorActive = false
-    })
-  }
+function leaveHandler() {
+  cursor.value.active = false
 }
 
 onMounted(() => {
-  new Cursor(document.querySelector('.cursor')!)
+  document.addEventListener('mousemove', moveHandler)
+  document.addEventListener('mouseleave', leaveHandler)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('mousemove', moveHandler)
+  document.removeEventListener('mouseleave', leaveHandler)
 })
 </script>
 
 <template>
-  <div class="cursor" />
+  <div
+    class="cursor"
+    :style="cursorStyles"
+  />
 </template>
 
 <style scoped lang="scss">
@@ -64,6 +96,7 @@ onMounted(() => {
   opacity: 0;
   transition: .5s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
+  will-change: transform, opacity;
 
   @include touch {
     display: none;

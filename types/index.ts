@@ -1,3 +1,10 @@
+export interface Cursor {
+  x: number
+  y: number
+  active: boolean
+  hover: boolean
+}
+
 export interface Page {
   link: string
   title: string
