@@ -27,5 +27,9 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
 }
 </style>

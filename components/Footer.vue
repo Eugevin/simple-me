@@ -2,10 +2,10 @@
   <footer class="footer">
     <p>
       <span>
-        © All rights reserved 2024
+        Copyright © 2024 - 2025.
       </span>
       <span>
-        Made with 💝 by <b>Eugene Vinokurov</b>
+        Developed by Eugene Vinokurov
       </span>
     </p>
   </footer>
