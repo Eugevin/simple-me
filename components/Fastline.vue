@@ -1,7 +1,22 @@
 <script setup lang="ts">
-defineProps<{
-  words: string[]
-}>()
+const words: string[] = [
+  'frontend',
+  'javascript',
+  'typescript',
+  'vuejs',
+  'html5',
+  'css3',
+  'expressjs',
+  'nestjs',
+  'mongodb',
+  'docker',
+  'webrtc',
+  'jwt',
+  'socket.io',
+  'ci/cd',
+  'canvas',
+  'webgl',
+]
 </script>
 
 <template>

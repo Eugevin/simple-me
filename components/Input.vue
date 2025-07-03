@@ -6,9 +6,7 @@ defineProps<{
 
 <template>
   <button v-if="type === 'button'">
-    <span class="hoverable">
-      <slot />
-    </span>
+    <slot />
   </button>
   <input
     v-else
@@ -26,26 +24,41 @@ button {
   display: inline-block;
   color: var(--white);
   cursor: pointer;
+  padding: .25rem 1rem;
+  position: relative;
 
-  span {
-    position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      height: .08rem;
-      width: 100%;
-      opacity: 0;
-      transform: translateY(-50%);
-      background: var(--white);
-      transition: var(--transition);
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: .08rem;
+    width: 0;
+    transform: translateY(-50%);
+    mix-blend-mode: difference;
+    background: var(--white);
+    transition: var(--transition);
   }
 
-  &:hover span::before {
-    opacity: 1;
+  &:hover::before {
+    animation: lineAnimation forwards var(--transition);
+  }
+
+  @keyframes lineAnimation {
+    0% {
+      height: .08rem;
+      width: 0;
+    }
+
+    50% {
+      height: .08rem;
+      width: 100%;
+    }
+
+    100% {
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 </style>

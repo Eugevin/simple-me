@@ -1,44 +1,42 @@
 <script setup lang="ts">
-import { animate, stagger, type MotionKeyframesDefinition } from 'motion'
+import { animate, stagger } from 'motion'
 import { clipPaths } from '~/static/clipPaths'
 import { easeInOutExpo, easeOutBack } from '~/static/easings'
 import type { Page } from '~/types'
 
 definePageMeta({ pageTransition })
 
-const words: string[] = [
-  'frontend',
-  'javascript',
-  'typescript',
-  'vuejs',
-  'html5',
-  'css3',
-  'expressjs',
-  'nestjs',
-  'mongodb',
-  'docker',
-  'webrtc',
-  'jwt',
-  'socket.io',
-  'ci/cd',
-  'canvas',
-  'webgl',
-]
-
 const pages = useState<Page[]>('pages')
 
-function showPage() {
-  const defaultFadeIn: MotionKeyframesDefinition = {
-    visibility: 'visible',
-    opacity: [0, 1],
-  }
+const profileTitleEls = ref<HTMLElement[]>([])
+const profileImageEl = ref<HTMLElement>()
 
-  animate('.me__title span', defaultFadeIn, { delay: stagger(0.05), easing: easeOutBack })
-  animate('.me__image', { visibility: 'visible', clipPath: clipPaths.toRight }, { duration: 1, easing: easeInOutExpo })
-  animate('.me__pages button', defaultFadeIn, { delay: stagger(0.25), easing: easeInOutExpo })
-}
+useAnimations(() => {
+  const defaultShift: string = '.5'
 
-useAnimations(showPage)
+  animate(profileTitleEls.value,
+    {
+      visibility: 'visible',
+      opacity: [0, 1],
+      transform: [
+        `translate3d(-${defaultShift}rem, 0, 0) scale(${defaultShift})`,
+        '',
+      ],
+    },
+    {
+      delay: stagger(0.05),
+      easing: easeOutBack,
+    })
+  animate(profileImageEl.value!,
+    {
+      visibility: 'visible',
+      clipPath: clipPaths.toRight,
+    },
+    {
+      duration: 1,
+      easing: easeInOutExpo,
+    })
+})
 
 useHead({
   link: [
@@ -53,29 +51,34 @@ useHead({
 
 <template>
   <div class="index-page">
-    <Fastline :words />
+    <Fastline />
     <div class="container">
-      <div class="me">
-        <h1 class="me__title">
-          <span
-            v-for="letter in 'Eugene Vinokurov'"
-            :key="letter"
-          >{{ letter }}</span>
-        </h1>
-        <figure class="me__image">
+      <div class="profile">
+        <figure class="profile__image">
+          <figcaption>
+            <h1>
+              <span
+                v-for="letter in 'Eugene Vinokurov'"
+                :key="letter"
+                ref="profileTitleEls"
+                :data-letter="letter"
+              >{{
+                letter }}</span>
+            </h1>
+          </figcaption>
           <picture>
             <source
               media="(min-width: 2000px)"
               srcset="/images/me-4k.webp"
             >
             <img
+              ref="profileImageEl"
               src="/images/me.webp"
-              alt="my photo"
-              class="me__image"
+              alt="profile photo"
             >
           </picture>
         </figure>
-        <div class="me__pages">
+        <div class="profile__pages">
           <Input
             v-for="page in pages.filter(page => page.title !== 'home')"
             :key="page.title"
@@ -94,29 +97,31 @@ useHead({
 .index-page {
   position: relative;
 
-  .me {
+  .profile {
     margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    &__title {
-      span {
-        visibility: hidden;
-      }
-    }
 
     &__image {
-      height: 10rem;
-      width: 100%;
-      visibility: hidden;
+      margin-bottom: 1rem;
 
-      img {
-        height: 100%;
+      figcaption {
+        margin-bottom: inherit;
+
+        span:not([data-letter=" "]) {
+          display: inline-block;
+        }
+      }
+
+      picture img {
+        height: 10rem;
         width: 100%;
         object-fit: cover;
         object-position: 0 15%;
         filter: grayscale(1);
+      }
+
+      span,
+      img {
+        visibility: hidden;
       }
     }
 
@@ -125,8 +130,7 @@ useHead({
       flex-wrap: wrap;
       gap: 1rem;
 
-      > * {
-        visibility: hidden;
+      >* {
         flex: 1 1 auto;
       }
     }
@@ -148,8 +152,7 @@ useHead({
 
   @keyframes fingerprintAnimation {
     to {
-      transform: rotate(360deg);
-    }
+      transform: rotate(360deg);  }
   }
 }
 </style>
