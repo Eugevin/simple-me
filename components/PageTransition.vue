@@ -21,11 +21,20 @@ const pages = useState<Page[]>('pages', () => {
     },
   ]
 })
+
+const route = useRoute()
+
+const currentPage = computed(() => {
+  const mainPage = pages.value.find(page => page.link === route.path)
+  const easyRoute = route.path.split('/').at(-1)
+
+  return mainPage?.title ?? easyRoute
+})
 </script>
 
 <template>
   <div id="transition">
-    <h3>{{ pages.find(page => page.link === $route.path)?.title ?? $route.path.split('/').at(-1) }}</h3>
+    <h3>{{ currentPage }}</h3>
   </div>
 </template>
 
