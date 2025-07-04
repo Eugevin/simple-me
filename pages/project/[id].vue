@@ -15,13 +15,40 @@ const { data: currentDraft } = await useFetch<Draft>(
   },
 )
 
-async function showPage() {
-  animate('.project .project__image', { visibility: 'visible', clipPath: [...clipPaths.toRight] }, { duration: 1, easing: easeInOutExpo })
-  animate('.project .project__stack', { visibility: 'visible', clipPath: [...clipPaths.toRight] }, { duration: 0.8, easing: easeInOutExpo })
-  animate('.project .project__description', { visibility: 'visible', clipPath: [...clipPaths.toBottom] }, { delay: 0.3, duration: 0.6, easing: easeInOutExpo })
-}
+const projectImageEl = ref<HTMLElement>()
+const projectStackEl = ref<HTMLElement>()
+const projectDescriptionEl = ref<HTMLElement>()
 
-useAnimations(showPage)
+useAnimations(() => {
+  animate(projectImageEl.value!,
+    {
+      visibility: 'visible',
+      clipPath: [...clipPaths.toRight],
+    },
+    {
+      duration: 1,
+      easing: easeInOutExpo,
+    })
+  animate(projectStackEl.value!,
+    {
+      visibility: 'visible',
+      clipPath: [...clipPaths.toRight],
+    },
+    {
+      duration: 0.8,
+      easing: easeInOutExpo,
+    })
+  animate(projectDescriptionEl.value!,
+    {
+      visibility: 'visible',
+      clipPath: [...clipPaths.toBottom],
+    },
+    {
+      delay: 0.3,
+      duration: 0.6,
+      easing: easeInOutExpo,
+    })
+})
 </script>
 
 <template>
@@ -32,7 +59,10 @@ useAnimations(showPage)
         v-if="currentDraft"
         class="project"
       >
-        <div class="project__image">
+        <div
+          ref="projectImageEl"
+          class="project__image"
+        >
           <img
             :src="`/images/drafts/${currentDraft.image.split('.')[0]}-v.webp`"
             alt="project image"
@@ -42,10 +72,16 @@ useAnimations(showPage)
             alt="project image"
           >
         </div>
-        <div class="project__stack">
+        <div
+          ref="projectStackEl"
+          class="project__stack"
+        >
           {{ currentDraft.stack }}
         </div>
-        <div class="project__description">
+        <div
+          ref="projectDescriptionEl"
+          class="project__description"
+        >
           <p v-html="currentDraft.description" />
           <p>Which I participated in:</p>
           <ul>
@@ -74,7 +110,7 @@ useAnimations(showPage)
     grid-template-areas:
       "image stack"
       "image description"
-      "image description";
+      "null description";
     gap: 1rem;
     color: var(--black);
 
@@ -85,6 +121,7 @@ useAnimations(showPage)
       filter: grayscale(1);
 
       img {
+        height: 100%;
         width: 100%;
         object-fit: cover;
 

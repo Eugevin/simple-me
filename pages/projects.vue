@@ -1,27 +1,26 @@
 <script setup lang="ts">
 definePageMeta({ pageTransition })
 
-const resizeController = new AbortController()
+function overflowHandler() {
+  // looks like a cow shit...
+  document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
+}
 
 onMounted(() => {
-  document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
+  overflowHandler()
 
-  window.addEventListener('resize', () => {
-    document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
-  }, { signal: resizeController.signal })
+  window.addEventListener('resize', overflowHandler)
 })
 
 onUnmounted(() => {
-  resizeController.abort()
+  window.removeEventListener('resize', overflowHandler)
 })
 </script>
 
 <template>
   <div class="projects-page">
     <Header title="Projects" />
-    <div class="container">
-      <Drafts />
-    </div>
+    <Drafts />
   </div>
 </template>
 
