@@ -8,7 +8,10 @@ export default defineNuxtConfig({
     head: {
       title: 'Eugene Vinokurov | Frontend Developer',
       meta: [
-        { name: 'description', content: 'Frontend Developer (Vue.js, TypeScript, JavaScript)' },
+        {
+          name: 'description',
+          content: 'Frontend Developer (Vue.js, TypeScript, JavaScript)',
+        },
       ],
       htmlAttrs: {
         lang: 'en',

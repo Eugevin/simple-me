@@ -2,33 +2,46 @@
 import { animate } from 'motion'
 import { easeInOutExpo } from '~/static/easings'
 
-const preloadState = ref<number>(0)
 const { data: preloadImages } = await useFetch<string[]>('/api/preload')
+
 const loaded = useState<boolean>('loaded')
 
-async function preload() {
-  await Promise.allSettled(preloadImages.value!.map((src) => {
+const preloadState = ref<number>(0)
+const preloadEl = ref<HTMLElement>()
+
+function getPreloadPromises(images: string[]): Promise<void>[] {
+  const percentPerPicture = Math.floor(100 / images.length)
+
+  const preloadPromises = images.map((src) => {
     return new Promise<void>((resolve) => {
       const img = new Image()
       img.src = `/images/${src}`
 
       img.addEventListener('load', () => {
-        preloadState.value += Math.floor(100 / preloadImages.value!.length)
+        preloadState.value += percentPerPicture
         resolve()
       })
     })
-  }))
+  })
 
-  if (preloadState.value >= 95) {
-    preloadState.value = 100
-    animate('.preloader', { visibility: 'hidden', opacity: [1, 0] }, { duration: 0.5, easing: easeInOutExpo })
-    loaded.value = true
+  return preloadPromises
+}
 
-    return
-  }
+async function preload() {
+  await Promise.allSettled(getPreloadPromises(preloadImages.value!))
 
-  // TODO: Cringe? Yup, it is, delete it
-  alert('Assets loading error')
+  animate('.preloader',
+    {
+      visibility: 'hidden',
+      opacity: [1, 0],
+    },
+    {
+      duration: 0.5,
+      easing: easeInOutExpo,
+    })
+
+  preloadState.value = 100
+  loaded.value = true
 }
 
 onMounted(() => {
@@ -37,7 +50,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="preloader">
+  <div
+    ref="preloadEl"
+    class="preloader"
+  >
     <p>{{ preloadState }}%</p>
   </div>
 </template>

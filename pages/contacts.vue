@@ -29,7 +29,12 @@ useAnimations(showPage)
   <div class="contacts-page">
     <Header title="contacts" />
     <div class="container">
-      <p>Do you want me? <u>Do you</u>? Ahem... Well, you can <u>find me here</u>:</p>
+      <p>
+        Do you want me?
+        <u>Do you</u>?
+        Ahem... Well, you can
+        <u>find me here</u>:
+      </p>
       <div class="buttons">
         <div class="box">
           <Input
