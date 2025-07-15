@@ -168,21 +168,17 @@ onMounted(() => {
     }
   }
 
-  &__items {
-    background-color: red;
-
-    img {
-      filter: grayscale(1);
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: calc(20rem / (16 / 9));
-      width: 20rem;
-      will-change: transform, opacity;
-      opacity: var(--opacity);
-      transform: var(--transform);
-      transition: var(--speed) ease-out;
-    }
+  &__items img {
+    filter: grayscale(1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: calc(20rem / (16 / 9));
+    width: 20rem;
+    will-change: transform, opacity;
+    opacity: var(--opacity);
+    transform: var(--transform);
+    transition: var(--speed) ease-out;
   }
 
   @include touch {
