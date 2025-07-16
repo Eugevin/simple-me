@@ -5,6 +5,12 @@ defineProps<{
   title: string
 }>()
 
+const headerEl = ref<HTMLElement>()
+const headerSize = reactive<{ h: number, w: number }>({
+  h: 0,
+  w: 0,
+})
+
 const route = useRoute()
 
 const pages = useState<Page[]>('pages')
@@ -14,10 +20,32 @@ const availablePages = computed<Page[]>(() => {
 })
 
 const menuActive = ref<boolean>(false)
+
+function resizeHandler() {
+  headerSize.h = headerEl.value?.clientHeight ?? 0
+  headerSize.w = headerEl.value?.clientWidth ?? 0
+}
+
+onMounted(() => {
+  resizeHandler()
+  window.addEventListener('resize', resizeHandler)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeHandler)
+})
 </script>
 
 <template>
-  <header class="header">
+  <header
+    ref="headerEl"
+    class="header"
+  >
+    <Bezier
+      :lines="20"
+      :height="headerSize.h"
+      :width="headerSize.w"
+    />
     <div class="container">
       <h2 class="header__title">
         {{ title }}
@@ -53,17 +81,6 @@ const menuActive = ref<boolean>(false)
   mix-blend-mode: difference;
   z-index: 9;
   margin-bottom: 2rem;
-
-  background:
-    repeating-radial-gradient(circle at 50% 50%,
-      rgba(255, 255, 255, 0.05) 0px,
-      rgba(255, 255, 255, 0.05) 1px,
-      transparent 1px,
-      transparent 7px);
-  background-size:
-    300% 300%,
-    12px 12px,
-    100% 100%;
 
   .container {
     position: relative;
