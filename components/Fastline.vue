@@ -1,13 +1,38 @@
 <script setup lang="ts">
-defineProps<{
-  words: string[]
-}>()
+const words: string[] = [
+  'frontend',
+  'javascript',
+  'typescript',
+  'vuejs',
+  'html5',
+  'css3',
+  'expressjs',
+  'nestjs',
+  'mongodb',
+  'docker',
+  'webrtc',
+  'jwt',
+  'socket.io',
+  'ci/cd',
+  'canvas',
+  'webgl',
+]
 </script>
 
 <template>
   <div class="fastline">
-    <ul v-for="i in 2" class="words">
-      <li class="words__item" v-for="word in words" :key="word">{{ word }}</li>
+    <ul
+      v-for="i in 2"
+      :key="i"
+      class="words"
+    >
+      <li
+        v-for="word in words"
+        :key="word"
+        class="words__item"
+      >
+        {{ word }}
+      </li>
     </ul>
   </div>
 </template>
@@ -21,11 +46,13 @@ defineProps<{
 
   .words {
     display: flex;
+    flex-direction: row;
     animation: fastlineAnimation 20s linear infinite;
 
     &__item {
       line-height: 1.5;
       padding: 0 .5rem;
+      white-space: nowrap;
     }
   }
 }

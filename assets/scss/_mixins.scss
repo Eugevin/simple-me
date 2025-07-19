@@ -1,0 +1,39 @@
+@mixin touch {
+  @media screen and (hover: none) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin noise {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.05;
+  background: url('/images/bg.webp');
+  z-index: 1;
+  pointer-events: none;
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: .1rem;
+  }
+   
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: 1px solid var(--black)
+  }
+}

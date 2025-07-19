@@ -1,75 +1,21 @@
-# Nuxt Minimal Starter
+[![me](preview.png)](https://eugevin.dev)
+![language](https://img.shields.io/badge/language-typescript-blue)
+![runtime](https://img.shields.io/badge/bun_version-%3E%3D1.1.33-orange)
+![framework](https://img.shields.io/badge/framework-nuxtjs-green)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nuxt.js portofolio for [my website](https://eugevin.dev). Builded with Vite, Nuxt and some few thugs.
 
-## Setup
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## DEV MODE
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+bun i
+bun dev
 ```
 
-## Production
+Default server location: http://localhost:3000
 
-Build the application for production:
+## PROD MODE
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+docker compose up -d
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

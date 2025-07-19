@@ -1,10 +1,32 @@
 @use 'fonts';
-@use 'root';
+@use 'vars';
+@use 'mixins';
 
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  font-size: 2.6vw;
+  font-family: Poppins, Helvetica, sans-serif;
+  line-height: 1;
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  scrollbar-gutter: stable;
+
+  @include tablet {
+    font-size: 5vw;
+  }
+
+  &::before {
+    @include noise;
+  }
+
+  @include scrollbar;
 }
 
 main {
@@ -15,20 +37,58 @@ main {
 
 h1 {
   font-family: Anton, Helvetica, sans-serif;
-  font-size: 3.5rem;
+  font-size: 3.6rem;
   font-weight: 400;
   text-transform: uppercase;
 }
 
 h2 {
   font-family: Poppins, Helvetica, sans-serif;
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 800;
   text-transform: uppercase;
+  
+  @include tablet {
+    font-size: 2.4rem;
+  }
+}
+
+h3 {
+  font-family: Poppins, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+p {
+  letter-spacing: 2px;
+  line-height: 1.5;
+  font-size: .8rem;
 }
 
 ul {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  line-height: 1.5;
   list-style-type: none;
+  font-size: .8rem;
+
+  li {
+    letter-spacing: 2px;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: .5rem;
+      left: 0;
+      height: .25rem;
+      width: .25rem;
+      border-radius: 100%;
+      background: var(--white);
+    }
+  }
 }
 
 a {
@@ -42,4 +102,8 @@ b {
 
 .container {
   padding: 0 1rem;
+}
+
+.hoverable {
+  cursor: pointer;
 }

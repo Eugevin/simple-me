@@ -1,5 +1,20 @@
 <script setup lang="ts">
 definePageMeta({ pageTransition })
+
+function overflowHandler() {
+  // looks like a cow shit...
+  document.body.style.overflow = window.innerWidth > 768 ? 'hidden' : 'visible'
+}
+
+onMounted(() => {
+  overflowHandler()
+
+  window.addEventListener('resize', overflowHandler)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', overflowHandler)
+})
 </script>
 
 <template>
