@@ -23,6 +23,10 @@ const otherSkills: string[] = [
 
 definePageMeta({ pageTransition })
 
+function cvHandler() {
+  window.open('/cv.pdf', '_blank')
+}
+
 async function scrollPage() {
   document.querySelectorAll<HTMLElement>('.about-page section').forEach((section) => {
     const movingEls = section.querySelectorAll<HTMLElement>('.moving')!
@@ -159,7 +163,7 @@ useAnimations(scrollPage)
       </section>
       <div class="cv">
         <p>You can downlaod my CV using this button:</p>
-        <Input type="button">
+        <Input type="button" @click="cvHandler">
           Download
         </Input>
       </div>

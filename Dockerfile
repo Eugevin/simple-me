@@ -3,5 +3,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN bun install
-CMD bun run build ; bun .output/server/index.mjs
+RUN bun install && \
+    bun run build
+CMD bun .output/server/index.mjs
