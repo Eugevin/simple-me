@@ -6,20 +6,20 @@ const { lines, height, width } = defineProps<{
 }>()
 
 const canvasEl = ref<HTMLCanvasElement>()
-const animationID = ref<number>()
+let ctx: CanvasRenderingContext2D | null | undefined = null
+let animationID: number | null = null
 
-const ctx = computed(() => canvasEl.value?.getContext('2d'))
 const base = computed<{ amp: number, offset: number }>(() => ({
   amp: height * 0.33,
   offset: width * 0.1,
 }))
 
 function animate(t: number) {
-  if (!ctx.value) return
+  if (!ctx) return
 
   const { amp, offset } = base.value
 
-  ctx.value.clearRect(0, 0, width, height)
+  ctx.clearRect(0, 0, width, height)
 
   for (let i = 0; i < lines; i++) {
     // Вертикальная позиция линии
@@ -34,27 +34,28 @@ function animate(t: number) {
     const x2 = width * 0.66, y2 = y - Math.sin(phase + 1) * amp
     const x3 = width, y3 = y
 
-    ctx.value.save()
-    ctx.value.beginPath()
-    ctx.value.moveTo(x0, y0)
-    ctx.value.bezierCurveTo(x1, y1, x2, y2, x3, y3)
-    ctx.value.strokeStyle = 'rgba(255,255,255,0.88)'
-    ctx.value.lineWidth = 2.5
-    ctx.value.shadowColor = '#fff'
-    ctx.value.shadowBlur = 6
-    ctx.value.stroke()
-    ctx.value.restore()
+    ctx.save()
+    ctx.beginPath()
+    ctx.moveTo(x0, y0)
+    ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3)
+    ctx.strokeStyle = 'rgba(255,255,255,0.88)'
+    ctx.lineWidth = 2.5
+    ctx.shadowColor = '#fff'
+    ctx.shadowBlur = 6
+    ctx.stroke()
+    ctx.restore()
   }
 
-  animationID.value = requestAnimationFrame(animate)
+  animationID = requestAnimationFrame(animate)
 }
 
 onMounted(() => {
+  ctx = canvasEl.value?.getContext('2d')
   animate(0)
 })
 
 onUnmounted(() => {
-  if (animationID.value) cancelAnimationFrame(animationID.value)
+  if (animationID) cancelAnimationFrame(animationID)
 })
 </script>
 

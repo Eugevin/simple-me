@@ -440,10 +440,8 @@ useAnimations(showPage)
       position: static;
     }
 
-    &:last-child {
-      .motion {
-        transform: rotate(-45deg);
-      }
+    &:last-of-type .motion {
+      transform: translateX(2rem);
     }
   }
 

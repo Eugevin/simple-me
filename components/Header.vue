@@ -11,6 +11,8 @@ const headerSize = reactive<{ h: number, w: number }>({
   w: 0,
 })
 
+let headerObserver: ResizeObserver | null = null
+
 const route = useRoute()
 
 const pages = useState<Page[]>('pages')
@@ -21,18 +23,21 @@ const availablePages = computed<Page[]>(() => {
 
 const menuActive = ref<boolean>(false)
 
-function resizeHandler() {
-  headerSize.h = headerEl.value?.clientHeight ?? 0
-  headerSize.w = headerEl.value?.clientWidth ?? 0
-}
-
 onMounted(() => {
-  resizeHandler()
-  window.addEventListener('resize', resizeHandler)
+  headerObserver = new ResizeObserver(entries => {
+    for (const entry of entries) {
+      headerSize.h = entry.target.clientHeight
+      headerSize.w = entry.target.clientWidth
+    }
+  })
+
+  if (headerEl.value) headerObserver.observe(headerEl.value)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', resizeHandler)
+  if (headerObserver) {
+    headerObserver.disconnect()
+  }
 })
 </script>
 
