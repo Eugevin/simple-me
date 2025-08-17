@@ -1,0 +1,4 @@
+eugevin.dev {
+  encode zstd gzip
+  reverse_proxy eugevin:3000
+}
