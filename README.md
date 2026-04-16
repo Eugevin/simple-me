@@ -8,8 +8,8 @@ Nuxt.js portofolio for [my website](https://eugevin.dev). Builded with Vite, Nux
 ## DEV MODE
 
 ```bash
-bun i
-bun dev
+npm i
+npm run dev
 ```
 
 Default server location: http://localhost:3000
